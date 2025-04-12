@@ -1,9 +1,17 @@
-.block {
+.section {
   display: flex;
   align-items: center;
   height: 44px;
   padding: 0 8px;
-  color: red;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f7f8fb;
+
+    .opicon {
+      opacity: 1;
+    }
+  }
 
   .hover {
     cursor: pointer;
@@ -61,6 +69,7 @@
     height: 24px;
     border-radius: 4px;
     cursor: pointer;
+    opacity: 0;
 
     &:hover {
       background-color: #eaedf1;

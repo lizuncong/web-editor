@@ -29,15 +29,18 @@ const CompBlock = memo((props: CompBlockProps) => {
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
   const currentSectionConfigData = allSectionConfigData.sections[sectionId];
   const currentSectionSchema = currentSectionConfigData?.type ? allSectionSchema[currentSectionConfigData.type] : null;
-  const Icon = currentSectionSchema?.icon ? iconMap[currentSectionSchema.icon] : defaultIcon;
-  const hasBlocks = currentSectionSchema?.max_blocks && currentSectionSchema.blocks?.length;
+  if (!currentSectionConfigData || !currentSectionSchema) {
+    return <div className={styles.section}>{t('editor.notfound')}</div>;
+  }
+  const Icon = currentSectionSchema.icon ? iconMap[currentSectionSchema.icon] : defaultIcon;
+  const hasBlocks = currentSectionSchema.max_blocks && currentSectionSchema.blocks?.length;
   return (
-    <div className={styles.block}>
+    <div className={styles.section}>
       <span className={[styles.expand, hasBlocks && styles.hover].join(' ')}>{hasBlocks && <ExpandIcon />}</span>
       <span className={styles.icon}>
         <Icon />
       </span>
-      <span className={styles.name}>{t(currentSectionSchema?.name ?? '')}</span>
+      <span className={styles.name}>{t(currentSectionSchema.name)}</span>
       <span
         className={styles.opicon}
         onClick={() => {

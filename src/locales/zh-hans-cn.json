@@ -4,6 +4,7 @@
   },
   "editor": {
     "header": "落地页低代码编辑器",
-    "compsetting": "组件设置"
+    "compsetting": "组件设置",
+    "notfound": "Section未定义"
   }
 }
