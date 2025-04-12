@@ -1,3 +1,5 @@
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -5,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { updateSectionConfigData } from '@/store/reducer/editor';
 
 import DelIcon from '../../../assets/delete.svg?react';
+import DragIcon from '../../../assets/drag.svg?react';
 import ExpandIcon from '../../../assets/expand.svg?react';
 import EyeIcon from '../../../assets/eye.svg?react';
 import EyeCloseIcon from '../../../assets/eye_close.svg?react';
@@ -20,6 +23,7 @@ const iconMap: any = {
 };
 interface CompBlockProps {
   sectionId: string;
+  id: string;
 }
 const CompBlock = memo((props: CompBlockProps) => {
   const { sectionId } = props;
@@ -29,17 +33,29 @@ const CompBlock = memo((props: CompBlockProps) => {
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
   const currentSectionConfigData = allSectionConfigData.sections[sectionId];
   const currentSectionSchema = currentSectionConfigData?.type ? allSectionSchema[currentSectionConfigData.type] : null;
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
   if (!currentSectionConfigData || !currentSectionSchema) {
     return <div className={styles.section}>{t('editor.notfound')}</div>;
   }
   const Icon = currentSectionSchema.icon ? iconMap[currentSectionSchema.icon] : defaultIcon;
   const hasBlocks = currentSectionSchema.max_blocks && currentSectionSchema.blocks?.length;
   return (
-    <div className={styles.section}>
+    <div ref={setNodeRef} style={style} {...attributes} className={styles.section}>
       <span className={[styles.expand, hasBlocks && styles.hover].join(' ')}>{hasBlocks && <ExpandIcon />}</span>
-      <span className={styles.icon}>
-        <Icon />
+      <span className={styles.dragwrap}>
+        <span className={[styles.icon, styles.sicon].join(' ')}>
+          <Icon />
+        </span>
+        <span {...listeners} className={[styles.icon, styles.dragicon].join(' ')}>
+          <DragIcon />
+        </span>
       </span>
+
       <span className={styles.name}>{t(currentSectionSchema.name)}</span>
       <span
         className={styles.opicon}
