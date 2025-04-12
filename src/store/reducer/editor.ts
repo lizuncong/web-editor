@@ -3,18 +3,22 @@
  * **/
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { PreviewTypeEnum, SideBarTypeEnum } from '@/types/editor';
+import { PreviewTypeEnum, SectionConfigDataStruct, SectionSchemaStruct, SideBarTypeEnum } from '@/types/editor';
 
 import { createAppSlice } from '../createAppSlice';
 
 export interface EditorSliceState {
   previewType: PreviewTypeEnum;
   sideBarType: SideBarTypeEnum;
+  allSectionSchema: Record<string, SectionSchemaStruct>;
+  sectionConfigData: SectionConfigDataStruct;
 }
 
 const initialState: EditorSliceState = {
   previewType: PreviewTypeEnum.pc,
   sideBarType: SideBarTypeEnum.comp,
+  allSectionSchema: {},
+  sectionConfigData: { order: [], sections: {} },
 };
 
 export const editorSlice = createAppSlice({

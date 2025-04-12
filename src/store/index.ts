@@ -37,3 +37,9 @@ export type AppStore = typeof store;
 // Infer the `AppDispatch` type from the store itself
 export type AppDispatch = AppStore['dispatch'];
 export type AppThunk<ThunkReturnType = void> = ThunkAction<ThunkReturnType, RootState, unknown, Action>;
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+window.__getStore = () => {
+  return store.getState();
+};
