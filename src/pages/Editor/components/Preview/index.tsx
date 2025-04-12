@@ -10,7 +10,11 @@ const Preview = memo(() => {
     : 'https://lizuncong.github.io/arise-theme/';
   return (
     <div className={styles.preview}>
-      <iframe sandbox="" className={[styles.iframe, styles[preview]].join(' ')} src={src}></iframe>
+      <iframe
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        className={[styles.iframe, styles[preview]].join(' ')}
+        src={src}
+      ></iframe>
     </div>
   );
 });
