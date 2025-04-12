@@ -1,1 +1,0 @@
-import{r as n,j as t}from"./index-CtsC6xVU.js";const e="_container_hrd83_1",r={container:e},s=n.memo(()=>t.jsx("div",{className:r.container,children:t.jsx("div",{children:"组件设置"})}));export{s as default};
