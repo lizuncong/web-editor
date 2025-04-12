@@ -6,7 +6,6 @@ import svgr from 'vite-plugin-svgr';
 const srcP = path.resolve(__dirname, './src');
 // https://vite.dev/config/
 export default (params: { mode: string }) => {
-  console.log('params...', params);
   return defineConfig({
     base: params.mode === 'development' ? '' : '/web-editor/',
 
