@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "stylelint-config-standard-less",
+    "stylelint-config-recess-order",
+    "stylelint-config-standard",
+    "stylelint-config-css-modules",
+    "stylelint-config-rational-order"
+  ],
+  "rules": {
+    "color-function-notation": null,
+    "selector-class-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "建议使用驼峰写法哦"
+      }
+    ]
+  }
+}

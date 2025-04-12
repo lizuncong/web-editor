@@ -1,0 +1,57 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  .main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    background-color: #eaedf1;
+  }
+
+  .sidebar {
+    width: 52px;
+    padding: 6px;
+    background-color: white;
+  }
+
+  .iconwrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: rgb(71, 79, 94);
+    }
+
+    &.selected {
+      position: relative;
+      background-color: rgb(240, 247, 255);
+
+      svg {
+        color: #356dff;
+      }
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: -6px;
+        width: 2px;
+        height: 20px;
+        background: #356dff;
+        border-radius: 0 4px 4px 0;
+        transform: translateY(-50%);
+        content: '';
+      }
+    }
+  }
+}
