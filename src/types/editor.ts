@@ -36,6 +36,7 @@ export interface SectionSchemaStruct {
   settings: SettingSchema[];
   blocks?: BlockSchema[];
   presets: PresetSchema[];
+  [propsName: string]: any;
 }
 
 interface SectionBlockConfigSchema {
@@ -55,6 +56,7 @@ interface SectionConfigSchema {
     settings: Record<string, { value: any }>;
     blocks: Record<string, SectionBlockConfigSchema>;
   };
+  [propsName: string]: any;
 }
 export interface SectionConfigDataStruct {
   order: string[];

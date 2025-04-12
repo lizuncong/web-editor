@@ -1,4 +1,7 @@
+import i18n from 'i18next'; // 确保你已经初始化了i18n
 import { useEffect } from 'react';
+
+import { defaultNs, zhKey } from '@/i18n';
 
 // 主题配置项的预料应该要从后端拉取，现在先在本地Mock
 const locales = {
@@ -1601,5 +1604,7 @@ const locales = {
   },
 };
 export const useGetSchemaLanguage = () => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    i18n.addResourceBundle(zhKey, defaultNs, locales, true, true);
+  }, []);
 };

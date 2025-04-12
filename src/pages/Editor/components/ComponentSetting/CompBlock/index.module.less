@@ -1,3 +1,52 @@
 .block {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 8px;
   color: red;
+
+  .expand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 28px;
+    margin-right: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: #eaedf1;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .name {
+    flex: 1;
+    margin-left: 4px;
+    overflow: hidden;
+    color: #242833;
+    line-height: 20px;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
 }
