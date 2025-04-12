@@ -6,7 +6,8 @@ import svgr from 'vite-plugin-svgr';
 const srcP = path.resolve(__dirname, './src');
 // https://vite.dev/config/
 export default defineConfig({
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  base: '/web-editor/',
+
   plugins: [svgr(), react()],
   resolve: {
     alias: {
