@@ -45,7 +45,7 @@ interface SectionBlockConfigSchema {
   blockId: string;
   settings: Record<string, { value: any }>;
 }
-interface SectionConfigSchema {
+export interface SectionConfigSchema {
   sectionId: string;
   type: string;
   disabled: boolean;
