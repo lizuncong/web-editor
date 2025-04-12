@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { changeEditorState } from '@/store/reducer/editor';
@@ -20,9 +21,11 @@ const previewTypeIcons = [
 const Header = memo(() => {
   const previewType = useAppSelector((state) => state.editor.previewType);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
   return (
     <header className={styles.header}>
-      <div className={styles.left}>落地页低代码编辑器</div>
+      <div className={styles.left}>{t('editor.header')}</div>
       <div className={styles.right}>
         {previewTypeIcons.map((typeIcon) => (
           <span

@@ -934,7 +934,7 @@ const allSectionSchema = {
       },
     ],
   },
-} as Record<string, SectionSchemaStruct>;
+} as unknown as Record<string, SectionSchemaStruct>;
 
 export const useGetAllSectionSchema = () => {
   const dispatch = useAppDispatch();

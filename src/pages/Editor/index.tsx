@@ -9,6 +9,7 @@ import ThemeIcon from './assets/theme.svg?react';
 import Header from './components/Header';
 import Preview from './components/Preview';
 import { useGetAllSectionSchema } from './hooks/useGetAllSectionSchema';
+import { useGetSectionConfigData } from './hooks/useGetSectionConfigData';
 import styles from './index.module.less';
 const ComponentSetting = lazy(() => import(/* webpackChunkName: 'componentsetting' */ './components/ComponentSetting'));
 const ThemeSetting = lazy(() => import(/* webpackChunkName: 'themesetting' */ './components/ThemeSetting'));
@@ -28,6 +29,8 @@ const Editor = memo(() => {
   const dispatch = useAppDispatch();
   // 获取主题所有组件的schema配置信息
   useGetAllSectionSchema();
+  // 初始化配置数据
+  useGetSectionConfigData();
   return (
     <div className={styles.editor}>
       {/* 顶部栏 */}
