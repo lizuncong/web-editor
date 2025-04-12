@@ -60,5 +60,5 @@ interface SectionConfigSchema {
 }
 export interface SectionConfigDataStruct {
   order: string[];
-  sections: Record<string, SectionConfigSchema>;
+  sections: Record<string, SectionConfigSchema | undefined>;
 }

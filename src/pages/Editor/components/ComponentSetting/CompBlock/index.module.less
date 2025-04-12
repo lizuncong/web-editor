@@ -5,13 +5,7 @@
   padding: 0 8px;
   color: red;
 
-  .expand {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 28px;
-    margin-right: 4px;
+  .hover {
     cursor: pointer;
 
     &:hover {
@@ -19,6 +13,15 @@
       border-radius: 4px;
       cursor: pointer;
     }
+  }
+
+  .expand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 28px;
+    margin-right: 4px;
 
     svg {
       width: 12px;
@@ -48,5 +51,19 @@
     text-align: left;
     text-overflow: ellipsis;
     vertical-align: middle;
+  }
+
+  .opicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eaedf1;
+    }
   }
 }

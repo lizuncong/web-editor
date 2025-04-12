@@ -29,8 +29,11 @@ export const editorSlice = createAppSlice({
     changeEditorState: create.reducer((state, action: PayloadAction<Partial<EditorSliceState>>) => {
       Object.assign(state, { ...action.payload });
     }),
+    updateSectionConfigData: create.reducer((state, action: PayloadAction<SectionConfigDataStruct>) => {
+      state.sectionConfigData = action.payload;
+    }),
   }),
   selectors: {},
 });
 
-export const { changeEditorState } = editorSlice.actions;
+export const { changeEditorState, updateSectionConfigData } = editorSlice.actions;
