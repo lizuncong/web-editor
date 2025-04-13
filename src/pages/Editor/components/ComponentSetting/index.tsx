@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/store/hooks';
 
 import { useUpdateConfigData } from '../../hooks/useUpdateConfigDataAndNotify';
+import AddSection from './AddSection';
 import CompBlock from './CompBlock';
 import styles from './index.module.less';
 const ComponentSetting = memo(() => {
@@ -47,6 +48,7 @@ const ComponentSetting = memo(() => {
             ))}
           </SortableContext>
         </DndContext>
+        <AddSection />
       </div>
     </div>
   );
