@@ -12,15 +12,16 @@ class FrameCommunicator {
     this.origin = getThemeOrigin();
     this.iframeWindowPromise = resolvablePromise();
   }
-  public initFrameWindow(iframeWindow: Window | null = null) {
+  public initFrameWindow(iframeWindow: any) {
     this.iframeWindowPromise.resolve(iframeWindow);
     // 初始化监听iframe的消息
     const listener = (event: { origin: string; data: any }) => {
+      console.log('Editor: 监听iframe发送的消息：', event.origin, this.origin, event.origin !== this.origin);
+
       if (this.origin && event.origin !== this.origin) {
         console.warn(`Message from unknown origin: ${event.origin}`);
         return;
       }
-
       // 解析消息
       const { type, data } = event.data;
 
@@ -47,7 +48,7 @@ class FrameCommunicator {
       data,
     };
 
-    iframeWindow.postMessage(message, this.origin);
+    iframeWindow.contentWindow.postMessage(message, this.origin);
   }
 
   // sectionConfigData的order发生了改变

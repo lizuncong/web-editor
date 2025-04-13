@@ -10,7 +10,7 @@ const Preview = memo(() => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const src = getIframeSrc();
   useEffect(() => {
-    const destroy = iframeCommunicator.initFrameWindow(iframeRef.current?.contentWindow);
+    const destroy = iframeCommunicator.initFrameWindow(iframeRef.current);
     return destroy;
   }, [src]);
   return (
