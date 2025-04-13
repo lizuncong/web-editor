@@ -1,6 +1,7 @@
 import i18n from 'i18next'; // 确保你已经初始化了i18n
 import { useEffect } from 'react';
 
+import { isDev } from '@/constant';
 import { defaultNs } from '@/i18n';
 import { useAppDispatch } from '@/store/hooks';
 import { changeEditorState } from '@/store/reducer/editor';
@@ -57,6 +58,13 @@ export const useListenerMsgFromIframe = () => {
         console.log('多语言.。。', data);
         console.log('多语言i18nk...', i18n);
         i18n.addResourceBundle(data.i18nKey, defaultNs, data.locales, true, true);
+        if (!isDev()) {
+          // 线上多语言貌似没更新
+          i18n.changeLanguage('en');
+          setTimeout(() => {
+            i18n.changeLanguage(data.i18nKey);
+          }, 10);
+        }
       },
     );
     return () => {
