@@ -52,7 +52,7 @@ export interface SectionConfigSchema {
   settingsData: {
     disabled: boolean;
     type: string;
-    block_order: string;
+    block_order: string[];
     settings: Record<string, { value: any }>;
     blocks: Record<string, SectionBlockConfigSchema>;
   };
