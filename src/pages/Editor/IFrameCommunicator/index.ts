@@ -1,3 +1,4 @@
+import { getThemeOrigin } from '@/constant';
 import { SectionConfigDataStruct, SectionConfigSchema, SectionSchemaStruct } from '@/types/editor';
 import { resolvablePromise } from '@/utils/resolve';
 
@@ -8,7 +9,7 @@ class FrameCommunicator {
   private iframeWindowPromise: any;
   private eventListeners = new Map<string, ((data: any) => void)[]>();
   constructor() {
-    this.origin = location.host.includes('localhost') ? '' : 'https://lizuncong.github.io"';
+    this.origin = getThemeOrigin();
     this.iframeWindowPromise = resolvablePromise();
   }
   public initFrameWindow(iframeWindow: Window | null = null) {
