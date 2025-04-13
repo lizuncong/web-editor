@@ -8,15 +8,15 @@ import {
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { changeEditorState } from '@/store/reducer/editor';
+import { useAppSelector } from '@/store/hooks';
 
+import { useUpdateConfigData } from '../../hooks/useUpdateConfigDataAndNotify';
 import CompBlock from './CompBlock';
 import styles from './index.module.less';
 const ComponentSetting = memo(() => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
+  const { updateSectionConfigOrder } = useUpdateConfigData();
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -32,15 +32,7 @@ const ComponentSetting = memo(() => {
       const oldIndex = items.indexOf(active.id);
       const newIndex = items.indexOf(over.id);
 
-      const newItems = arrayMove(items, oldIndex, newIndex);
-      dispatch(
-        changeEditorState({
-          sectionConfigData: {
-            ...sectionConfigData,
-            order: newItems,
-          },
-        }),
-      );
+      updateSectionConfigOrder(arrayMove(items, oldIndex, newIndex));
     }
   }
 

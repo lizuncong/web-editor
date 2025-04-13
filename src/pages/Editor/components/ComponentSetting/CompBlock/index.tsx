@@ -3,8 +3,8 @@ import { CSS } from '@dnd-kit/utilities';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { updateSectionConfigData } from '@/store/reducer/editor';
+import { useUpdateConfigData } from '@/pages/Editor/hooks/useUpdateConfigDataAndNotify';
+import { useAppSelector } from '@/store/hooks';
 
 import DelIcon from '../../../assets/delete.svg?react';
 import DragIcon from '../../../assets/drag.svg?react';
@@ -28,13 +28,12 @@ interface CompBlockProps {
 const CompBlock = memo((props: CompBlockProps) => {
   const { sectionId } = props;
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const allSectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
   const currentSectionConfigData = allSectionConfigData.sections[sectionId];
   const currentSectionSchema = currentSectionConfigData?.type ? allSectionSchema[currentSectionConfigData.type] : null;
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
-
+  const { updateAllSectionConfigData, updateSectionConfigSectionBySectionId } = useUpdateConfigData();
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -60,15 +59,13 @@ const CompBlock = memo((props: CompBlockProps) => {
       <span
         className={styles.opicon}
         onClick={() => {
-          dispatch(
-            updateSectionConfigData({
-              order: allSectionConfigData.order.filter((sid) => sid !== sectionId),
-              sections: {
-                ...allSectionConfigData.sections,
-                [sectionId]: undefined,
-              },
-            }),
-          );
+          updateAllSectionConfigData({
+            order: allSectionConfigData.order.filter((sid) => sid !== sectionId),
+            sections: {
+              ...allSectionConfigData.sections,
+              [sectionId]: undefined,
+            },
+          });
         }}
       >
         <DelIcon />
@@ -76,18 +73,10 @@ const CompBlock = memo((props: CompBlockProps) => {
       <span
         className={styles.opicon}
         onClick={() => {
-          dispatch(
-            updateSectionConfigData({
-              ...allSectionConfigData,
-              sections: {
-                ...allSectionConfigData.sections,
-                [sectionId]: {
-                  ...currentSectionConfigData,
-                  disabled: !currentSectionConfigData.disabled,
-                },
-              },
-            }),
-          );
+          updateSectionConfigSectionBySectionId(sectionId, {
+            ...currentSectionConfigData,
+            disabled: !currentSectionConfigData.disabled,
+          });
         }}
       >
         {currentSectionConfigData.disabled ? <EyeCloseIcon /> : <EyeIcon />}

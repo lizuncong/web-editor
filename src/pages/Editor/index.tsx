@@ -8,9 +8,7 @@ import ComponentIcon from './assets/component.svg?react';
 import ThemeIcon from './assets/theme.svg?react';
 import Header from './components/Header';
 import Preview from './components/Preview';
-import { useGetAllSectionSchema } from './hooks/useGetAllSectionSchema';
-import { useGetSchemaLanguage } from './hooks/useGetSchemaLanguage';
-import { useGetSectionConfigData } from './hooks/useGetSectionConfigData';
+import { useListenerMsgFromIframe } from './hooks/useListenerMsgFromIframe';
 import styles from './index.module.less';
 const ComponentSetting = lazy(() => import(/* webpackChunkName: 'componentsetting' */ './components/ComponentSetting'));
 const ThemeSetting = lazy(() => import(/* webpackChunkName: 'themesetting' */ './components/ThemeSetting'));
@@ -28,11 +26,9 @@ const sideBarIcons = [
 const Editor = memo(() => {
   const sideBarType = useAppSelector((state) => state.editor.sideBarType);
   const dispatch = useAppDispatch();
-  // 获取主题所有组件的schema配置信息
-  useGetAllSectionSchema();
-  // 初始化配置数据
-  useGetSectionConfigData();
-  useGetSchemaLanguage();
+
+  // 监听iframe的消息
+  useListenerMsgFromIframe();
   return (
     <div className={styles.editor}>
       {/* 顶部栏 */}
