@@ -20,7 +20,7 @@ const Preview = memo(() => {
         ref={iframeRef}
         sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
         className={[styles.iframe, styles[preview]].join(' ')}
-        src={src}
+        src={src + '?iseditor=1'}
       ></iframe>
     </div>
   );
