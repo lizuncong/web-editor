@@ -54,6 +54,8 @@ export const useListenerMsgFromIframe = () => {
     // 监听section schema多语言语料改变的消息
     const offSectionSchemaLanguage = iframeCommunicator.onSectionSchemaLanguage(
       (data: { i18nKey: string; locales: any }) => {
+        console.log('多语言.。。', data);
+        console.log('多语言i18nk...', i18n);
         i18n.addResourceBundle(data.i18nKey, defaultNs, data.locales, true, true);
       },
     );
