@@ -47,6 +47,7 @@ class FrameCommunicator {
       type,
       data,
     };
+    console.log('Editor: 给Iframe发送的消息：', message);
 
     iframeWindow.contentWindow.postMessage(message, this.origin);
   }
