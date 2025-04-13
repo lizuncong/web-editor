@@ -41,7 +41,9 @@ const CompBlock = memo((props: CompBlockProps) => {
   if (!currentSectionConfigData || !currentSectionSchema) {
     return <div className={styles.section}>{t('editor.notfound')}</div>;
   }
-  const Icon = currentSectionSchema.icon ? iconMap[currentSectionSchema.icon] : defaultIcon;
+  const Icon =
+    currentSectionSchema.icon && iconMap[currentSectionSchema.icon] ? iconMap[currentSectionSchema.icon] : defaultIcon;
+
   const hasBlocks = currentSectionSchema.max_blocks && currentSectionSchema.blocks?.length;
   return (
     <div ref={setNodeRef} style={style} {...attributes} className={styles.section}>
