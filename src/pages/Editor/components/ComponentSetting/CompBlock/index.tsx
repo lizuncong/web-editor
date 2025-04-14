@@ -49,7 +49,12 @@ const CompBlock = memo((props: CompBlockProps) => {
 
   const hasBlocks = currentSectionSchema.max_blocks && currentSectionSchema.blocks?.length;
   return (
-    <div ref={setNodeRef} style={style} {...attributes} className={styles.section}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      className={[styles.section, currentEditingForm?.sectionId === sectionId && styles.selected].join(' ')}
+    >
       <span className={[styles.expand, hasBlocks && styles.hover].join(' ')}>{hasBlocks && <ExpandIcon />}</span>
       <span className={styles.dragwrap}>
         <span className={[styles.icon, styles.sicon].join(' ')}>

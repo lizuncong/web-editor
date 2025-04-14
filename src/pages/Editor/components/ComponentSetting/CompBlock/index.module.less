@@ -5,11 +5,20 @@
   padding: 0 8px;
   cursor: pointer;
 
-  &:hover {
+  &.selected {
+    position: relative;
     background-color: #f7f8fb;
 
-    .opicon {
-      opacity: 1;
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 2px;
+      height: 30px;
+      background: #356dff;
+      border-radius: 0 4px 4px 0;
+      transform: translateY(-50%);
+      content: '';
     }
   }
 
@@ -64,15 +73,16 @@
   }
 
   .name {
+    display: flex;
     flex: 1;
+    align-items: center;
+    height: 100%;
     margin-left: 4px;
     overflow: hidden;
     color: #242833;
-    line-height: 20px;
     white-space: nowrap;
     text-align: left;
     text-overflow: ellipsis;
-    vertical-align: middle;
   }
 
   .opicon {
@@ -87,6 +97,14 @@
 
     &:hover {
       background-color: #eaedf1;
+    }
+  }
+
+  &:hover {
+    background-color: #f7f8fb;
+
+    .opicon {
+      opacity: 1;
     }
   }
 }
