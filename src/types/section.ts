@@ -99,6 +99,6 @@ export interface SectionSchemaStruct {
 
 export interface CurrentEditingFormType {
   type: SectionTypeEnum | BlockTypeEnum;
-  sectionId?: SectionId;
+  sectionId: SectionId;
   blockId?: BlockId;
 }
