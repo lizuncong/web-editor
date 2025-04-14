@@ -1,5 +1,6 @@
 import { getThemeOrigin } from '@/constant';
 import {
+  CurrentEditingFormType,
   SectionConfigDataStruct,
   SectionConfigSchema,
   SectionId,
@@ -58,6 +59,10 @@ class FrameCommunicator {
     iframeWindow.contentWindow.postMessage(message, this.origin);
   }
 
+  // currentEditingForm发生了改变
+  public notifyCurrentEditingFormChange(currentEditingForm: CurrentEditingFormType | undefined) {
+    this.sendMessage(CommunicateType.currentEditingForm, currentEditingForm);
+  }
   // sectionConfigData的order发生了改变
   public notifySectionConfigOrderChange(order: SectionId[]) {
     this.sendMessage(CommunicateType.order, order);
@@ -101,6 +106,10 @@ class FrameCommunicator {
     return this.onMessage(CommunicateType.section, handler);
   }
 
+  // 监听currentEditingForm改变的信息
+  public onCurrentEditingFormChange(handler: (currentEditingForm: CurrentEditingFormType | undefined) => void) {
+    return this.onMessage(CommunicateType.currentEditingForm, handler);
+  }
   // 监听section schema配置项改变的信息
   public onAllSectionSchemaChange(handler: (data: Record<SectionTypeEnum, SectionSchemaStruct>) => void) {
     return this.onMessage(CommunicateListenerType.onAllSectionSchemaChange, handler);

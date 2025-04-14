@@ -18,6 +18,14 @@ export const useListenerMsgFromIframe = () => {
     updateAllSectionConfigData,
   } = useUpdateConfigData();
   useEffect(() => {
+    // 监听currentEditingForm改变的信息
+    const offCurrentEditingFormChange = iframeCommunicator.onCurrentEditingFormChange((data) => {
+      dispatch(
+        changeEditorState({
+          currentEditingForm: data,
+        }),
+      );
+    });
     // 监听section schema配置项协议改变的信息
     const offAllSectionSchemaChange = iframeCommunicator.onAllSectionSchemaChange((data) => {
       dispatch(
@@ -63,6 +71,7 @@ export const useListenerMsgFromIframe = () => {
       offSectionConfigSectionChange();
       offSectionConfigSectionsChange();
       offSectionSchemaLanguage();
+      offCurrentEditingFormChange();
     };
   }, [
     dispatch,

@@ -96,3 +96,9 @@ export interface SectionSchemaStruct {
   blocks?: SectionBlockSchemaStruct[];
   presets?: SectionPresetStruct[];
 }
+
+export interface CurrentEditingFormType {
+  type: SectionTypeEnum | BlockTypeEnum;
+  sectionId?: SectionId;
+  blockId?: BlockId;
+}

@@ -10,6 +10,8 @@ import Header from './components/Header';
 import Preview from './components/Preview';
 import { useListenerMsgFromIframe } from './hooks/useListenerMsgFromIframe';
 import styles from './index.module.less';
+const RightDrawer = lazy(() => import(/* webpackChunkName: 'rightDrawer' */ './components/Right'));
+
 const ComponentSetting = lazy(() => import(/* webpackChunkName: 'componentsetting' */ './components/ComponentSetting'));
 const ThemeSetting = lazy(() => import(/* webpackChunkName: 'themesetting' */ './components/ThemeSetting'));
 
@@ -25,6 +27,7 @@ const sideBarIcons = [
 ];
 const Editor = memo(() => {
   const sideBarType = useAppSelector((state) => state.editor.sideBarType);
+  const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm);
   const dispatch = useAppDispatch();
 
   // 监听iframe的消息
@@ -60,6 +63,8 @@ const Editor = memo(() => {
         {sideBarType === SideBarTypeEnum.theme && <ThemeSetting />}
         {/* 预览区 */}
         <Preview />
+        {/* 组件设置表单 */}
+        {currentEditingForm && <RightDrawer />}
       </div>
     </div>
   );

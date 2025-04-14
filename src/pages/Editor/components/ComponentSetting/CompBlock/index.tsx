@@ -29,12 +29,14 @@ interface CompBlockProps {
 const CompBlock = memo((props: CompBlockProps) => {
   const { sectionId } = props;
   const { t } = useTranslation();
+  const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm);
   const allSectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
   const currentSectionConfigData = allSectionConfigData.sections[sectionId];
   const currentSectionSchema = currentSectionConfigData?.type ? allSectionSchema[currentSectionConfigData.type] : null;
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
-  const { updateAllSectionConfigData, updateSectionConfigSectionBySectionId } = useUpdateConfigData();
+  const { updateAllSectionConfigData, updateCurrentEditingForm, updateSectionConfigSectionBySectionId } =
+    useUpdateConfigData();
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -58,7 +60,21 @@ const CompBlock = memo((props: CompBlockProps) => {
         </span>
       </span>
 
-      <span className={styles.name}>{t(currentSectionSchema.name)}</span>
+      <span
+        onClick={() => {
+          if (currentEditingForm?.sectionId === sectionId) {
+            updateCurrentEditingForm(undefined);
+          } else {
+            updateCurrentEditingForm({
+              type: currentSectionSchema.type,
+              sectionId: sectionId,
+            });
+          }
+        }}
+        className={styles.name}
+      >
+        {t(currentSectionSchema.name)}
+      </span>
       <span
         className={styles.opicon}
         onClick={() => {

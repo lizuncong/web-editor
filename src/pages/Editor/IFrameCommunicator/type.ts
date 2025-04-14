@@ -4,6 +4,7 @@ export enum CommunicateType {
   sections = 'sectionConfigData.sections', // sectionConfigData.sections发生了改变
   section = 'sectionConfigData.sections[sectionId]', // 某个section发生了改变
   sectionConfigData = 'sectionConfigData', // 整个sectionConfigData发生了改变
+  currentEditingForm = 'currentEditingForm', // 当前正在编辑的section或者block发生了改变
 }
 
 // 仅监听消息的type，监听iframe发送过来的消息

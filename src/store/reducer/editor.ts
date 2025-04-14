@@ -4,7 +4,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { PreviewTypeEnum, SideBarTypeEnum } from '@/types/editor';
-import { SectionConfigDataStruct, SectionSchemaStruct } from '@/types/section';
+import { CurrentEditingFormType, SectionConfigDataStruct, SectionSchemaStruct } from '@/types/section';
 
 import { createAppSlice } from '../createAppSlice';
 
@@ -13,11 +13,13 @@ export interface EditorSliceState {
   sideBarType: SideBarTypeEnum;
   allSectionSchema: Record<string, SectionSchemaStruct>;
   sectionConfigData: SectionConfigDataStruct;
+  currentEditingForm?: CurrentEditingFormType;
 }
 
 const initialState: EditorSliceState = {
   previewType: PreviewTypeEnum.pc,
   sideBarType: SideBarTypeEnum.comp,
+  currentEditingForm: undefined,
   allSectionSchema: {},
   sectionConfigData: { order: [], sections: {} },
 };

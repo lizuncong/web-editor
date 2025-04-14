@@ -1,8 +1,8 @@
 import { useCallback, useRef } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { updateSectionConfigData } from '@/store/reducer/editor';
-import { SectionConfigDataStruct, SectionConfigSchema, SectionId } from '@/types/section';
+import { changeEditorState, updateSectionConfigData } from '@/store/reducer/editor';
+import { CurrentEditingFormType, SectionConfigDataStruct, SectionConfigSchema, SectionId } from '@/types/section';
 
 import iframeCommunicator from '../IFrameCommunicator';
 
@@ -12,6 +12,20 @@ export const useUpdateConfigData = () => {
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
   const sectionConfigDataRef = useRef(sectionConfigData);
   sectionConfigDataRef.current = sectionConfigData;
+
+  const updateCurrentEditingForm = useCallback(
+    (currentEditingForm: CurrentEditingFormType | undefined, shouldNotifyIframe = true) => {
+      dispatch(
+        changeEditorState({
+          currentEditingForm,
+        }),
+      );
+      if (shouldNotifyIframe) {
+        iframeCommunicator.notifyCurrentEditingFormChange(currentEditingForm);
+      }
+    },
+    [dispatch],
+  );
 
   const updateSectionConfigOrder = useCallback(
     (newOrder: SectionId[], shouldNotifyIframe = true) => {
@@ -75,5 +89,6 @@ export const useUpdateConfigData = () => {
     updateSectionConfigSections,
     updateSectionConfigSectionBySectionId,
     updateAllSectionConfigData,
+    updateCurrentEditingForm,
   };
 };
