@@ -1,0 +1,1 @@
+import{r as e,j as s}from"./index-D7HrqSLX.js";import{u as t}from"./useTranslation-CEOIoEtF.js";const m="_home_15mur_1",r={home:m},c=e.memo(()=>{const{t:o}=t();return s.jsxs("div",{className:r.home,children:["首页",s.jsxs("span",{children:["(",o("home.title"),")"]})]})});export{c as default};
