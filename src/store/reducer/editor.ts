@@ -3,7 +3,8 @@
  * **/
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { PreviewTypeEnum, SectionConfigDataStruct, SectionSchemaStruct, SideBarTypeEnum } from '@/types/editor';
+import { PreviewTypeEnum, SideBarTypeEnum } from '@/types/editor';
+import { SectionConfigDataStruct, SectionSchemaStruct } from '@/types/section';
 
 import { createAppSlice } from '../createAppSlice';
 

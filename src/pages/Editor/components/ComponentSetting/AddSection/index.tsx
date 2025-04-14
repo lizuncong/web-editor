@@ -4,17 +4,22 @@ import { useTranslation } from 'react-i18next';
 
 import { useUpdateConfigData } from '@/pages/Editor/hooks/useUpdateConfigDataAndNotify';
 import { useAppSelector } from '@/store/hooks';
+import { SectionBlockConfigSchema, SectionConfigSchema, SectionPresetStruct, SectionTypeEnum } from '@/types/section';
 
 import styles from './index.module.less';
+interface PresetItemType {
+  preset: SectionPresetStruct;
+  sectionType: SectionTypeEnum;
+}
 const AddSection = memo(() => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
   const presetSections = useMemo(() => {
-    const result: any = {};
+    const result: Record<string, PresetItemType[]> = {};
     Object.values(allSectionSchema).forEach((sectionSchema) => {
-      if (!sectionSchema.presets.length) return;
+      if (!sectionSchema.presets?.length) return;
       sectionSchema.presets.forEach((preset) => {
         const category = t(preset.category);
         result[category] ??= [];
@@ -28,12 +33,12 @@ const AddSection = memo(() => {
   }, [allSectionSchema, t]);
   const { updateAllSectionConfigData } = useUpdateConfigData();
   const addSection = useCallback(
-    (presetItem: any) => {
+    (presetItem: PresetItemType) => {
       setOpen(false);
       const sectionId = Math.random().toString().substring(2, 24);
       const sectionType = presetItem.sectionType;
       const sectionSchema = allSectionSchema[sectionType];
-      const newSectionConfig: any = {
+      const newSectionConfig: SectionConfigSchema = {
         sectionId: sectionId,
         type: sectionType,
         disabled: false,
@@ -45,20 +50,18 @@ const AddSection = memo(() => {
           block_order: [],
         },
       };
-      sectionSchema.settings.forEach((setting) => {
+      (sectionSchema.settings ?? []).forEach((setting) => {
         if (!setting.id) return;
         const presetValue = presetItem.preset.settings[setting.id];
         newSectionConfig.settingsData.settings[setting.id] = {
           value: presetValue === undefined ? setting.default : presetValue,
         };
       });
-      (presetItem.preset.blocks ?? []).forEach((block: any) => {
+      (presetItem.preset.blocks ?? []).forEach((block) => {
         const newBlockId = Math.random().toString().substring(2, 24);
         newSectionConfig.settingsData.block_order.push(newBlockId);
-        const newBlock: any = {
+        const newBlock: SectionBlockConfigSchema = {
           type: block.type,
-          icon: block.icon,
-          blockId: newBlockId,
           settings: {},
         };
         newSectionConfig.settingsData.blocks[newBlockId] = newBlock;
@@ -94,7 +97,7 @@ const AddSection = memo(() => {
               return (
                 <div key={key}>
                   <div className={styles.category}>{key}</div>
-                  {presetItems.map((presetItem: any) => (
+                  {presetItems.map((presetItem) => (
                     <div
                       onClick={() => {
                         addSection(presetItem);

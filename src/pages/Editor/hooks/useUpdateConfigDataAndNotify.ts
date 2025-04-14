@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { updateSectionConfigData } from '@/store/reducer/editor';
-import { SectionConfigDataStruct, SectionConfigSchema } from '@/types/editor';
+import { SectionConfigDataStruct, SectionConfigSchema, SectionId } from '@/types/section';
 
 import iframeCommunicator from '../IFrameCommunicator';
 
@@ -14,7 +14,7 @@ export const useUpdateConfigData = () => {
   sectionConfigDataRef.current = sectionConfigData;
 
   const updateSectionConfigOrder = useCallback(
-    (newOrder: string[], shouldNotifyIframe = true) => {
+    (newOrder: SectionId[], shouldNotifyIframe = true) => {
       dispatch(
         updateSectionConfigData({
           ...sectionConfigDataRef.current,
@@ -39,7 +39,7 @@ export const useUpdateConfigData = () => {
   );
 
   const updateSectionConfigSections = useCallback(
-    (sections: Record<string, SectionConfigSchema | undefined>, shouldNotifyIframe = true) => {
+    (sections: Record<SectionId, SectionConfigSchema | undefined>, shouldNotifyIframe = true) => {
       dispatch(
         updateSectionConfigData({
           ...sectionConfigDataRef.current,
@@ -54,7 +54,7 @@ export const useUpdateConfigData = () => {
   );
 
   const updateSectionConfigSectionBySectionId = useCallback(
-    (sectionId: string, section: SectionConfigSchema | undefined, shouldNotifyIframe = true) => {
+    (sectionId: SectionId, section: SectionConfigSchema | undefined, shouldNotifyIframe = true) => {
       const newV = {
         ...sectionConfigDataRef.current,
         sections: {

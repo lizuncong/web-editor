@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useUpdateConfigData } from '@/pages/Editor/hooks/useUpdateConfigDataAndNotify';
 import { useAppSelector } from '@/store/hooks';
+import { BlockIconTypeEnum } from '@/types/section';
 
 import DelIcon from '../../../assets/delete.svg?react';
 import DragIcon from '../../../assets/drag.svg?react';
@@ -17,9 +18,9 @@ import SlideShowIcon from '../../../assets/slideshow.svg?react';
 import videoIcon from '../../../assets/video.svg?react';
 import styles from './index.module.less';
 const iconMap: any = {
-  slideshow: SlideShowIcon,
-  video: videoIcon,
-  splicing: pinIcon,
+  [BlockIconTypeEnum.image]: SlideShowIcon,
+  [BlockIconTypeEnum.video]: videoIcon,
+  [BlockIconTypeEnum.normal]: pinIcon,
 };
 interface CompBlockProps {
   sectionId: string;
@@ -41,8 +42,8 @@ const CompBlock = memo((props: CompBlockProps) => {
   if (!currentSectionConfigData || !currentSectionSchema) {
     return <div className={styles.section}>{t('editor.notfound')}</div>;
   }
-  const Icon =
-    currentSectionSchema.icon && iconMap[currentSectionSchema.icon] ? iconMap[currentSectionSchema.icon] : defaultIcon;
+  const sectionIcon = currentSectionSchema.icon && iconMap[currentSectionSchema.icon];
+  const Icon = sectionIcon ?? defaultIcon;
 
   const hasBlocks = currentSectionSchema.max_blocks && currentSectionSchema.blocks?.length;
   return (
