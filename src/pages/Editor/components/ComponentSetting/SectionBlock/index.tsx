@@ -3,9 +3,9 @@ import { CSS } from '@dnd-kit/utilities';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { iconMap } from '@/pages/Editor/constant';
 import { useUpdateConfigData } from '@/pages/Editor/hooks/useUpdateConfigDataAndNotify';
 import { useAppSelector } from '@/store/hooks';
-import { BlockIconTypeEnum } from '@/types/section';
 
 import DelIcon from '../../../assets/delete.svg?react';
 import DragIcon from '../../../assets/drag.svg?react';
@@ -13,20 +13,13 @@ import ExpandIcon from '../../../assets/expand.svg?react';
 import EyeIcon from '../../../assets/eye.svg?react';
 import EyeCloseIcon from '../../../assets/eye_close.svg?react';
 import defaultIcon from '../../../assets/image.svg?react';
-import pinIcon from '../../../assets/pin.svg?react';
-import SlideShowIcon from '../../../assets/slideshow.svg?react';
-import videoIcon from '../../../assets/video.svg?react';
 import styles from './index.module.less';
-const iconMap: any = {
-  [BlockIconTypeEnum.image]: SlideShowIcon,
-  [BlockIconTypeEnum.video]: videoIcon,
-  [BlockIconTypeEnum.normal]: pinIcon,
-};
-interface CompBlockProps {
+
+interface SectionBlockProps {
   sectionId: string;
   id: string;
 }
-const CompBlock = memo((props: CompBlockProps) => {
+const SectionBlock = memo((props: SectionBlockProps) => {
   const { sectionId } = props;
   const { t } = useTranslation();
   const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm);
@@ -120,4 +113,4 @@ const CompBlock = memo((props: CompBlockProps) => {
   );
 });
 
-export default CompBlock;
+export default SectionBlock;
