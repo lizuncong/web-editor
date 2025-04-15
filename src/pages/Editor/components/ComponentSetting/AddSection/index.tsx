@@ -35,7 +35,7 @@ const AddSection = memo(() => {
   const addSection = useCallback(
     (presetItem: PresetItemType) => {
       setOpen(false);
-      const sectionId = Math.random().toString().substring(2, 24);
+      const sectionId = `section_${Math.random().toString().substring(2, 24)}`;
       const sectionType = presetItem.sectionType;
       const sectionSchema = allSectionSchema[sectionType];
       const newSectionConfig: SectionConfigSchema = {
@@ -119,7 +119,7 @@ const AddSection = memo(() => {
       >
         <span
           onClick={() => {
-            setOpen(true);
+            setOpen(!open);
           }}
         >
           {t('editor.addSection')}

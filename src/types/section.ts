@@ -25,6 +25,7 @@ export interface SectionConfigSchema {
 
 export interface SectionBlockConfigSchema {
   type: BlockTypeEnum;
+  disabled?: boolean;
   settings: SettingsValue;
 }
 

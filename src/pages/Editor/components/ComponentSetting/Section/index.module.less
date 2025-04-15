@@ -53,6 +53,7 @@
     svg {
       width: 12px;
       height: 12px;
+      transition: transform 0.2s;
     }
   }
 
@@ -107,4 +108,16 @@
       opacity: 1;
     }
   }
+}
+
+.expandsection {
+  .expand {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.blockList {
+  padding-left: 52px;
 }

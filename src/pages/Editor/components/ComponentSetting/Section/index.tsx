@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { iconMap } from '@/pages/Editor/constant';
 import { useUpdateConfigData } from '@/pages/Editor/hooks/useUpdateConfigDataAndNotify';
 import { useAppSelector } from '@/store/hooks';
+import { SectionId } from '@/types/section';
 
 import DelIcon from '../../../assets/delete.svg?react';
 import DragIcon from '../../../assets/drag.svg?react';
@@ -13,13 +14,14 @@ import ExpandIcon from '../../../assets/expand.svg?react';
 import EyeIcon from '../../../assets/eye.svg?react';
 import EyeCloseIcon from '../../../assets/eye_close.svg?react';
 import defaultIcon from '../../../assets/image.svg?react';
+import AddBlock from '../AddBlock';
+import SectionBlock from '../SectionBlock';
 import styles from './index.module.less';
-
 interface SectionProps {
-  sectionId: string;
-  id: string;
+  sectionId: SectionId;
+  id: SectionId;
 }
-const Section = memo((props: SectionProps) => {
+const SectionCom = memo((props: SectionProps) => {
   const { sectionId } = props;
   const { t } = useTranslation();
   const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm);
@@ -38,6 +40,7 @@ const Section = memo((props: SectionProps) => {
   if (!currentSectionConfigData || !currentSectionSchema) {
     return <div className={styles.section}>{t('editor.notfound')}</div>;
   }
+  const blockOrder = currentSectionConfigData.settingsData.block_order;
   const sectionIcon = currentSectionSchema.icon && iconMap[currentSectionSchema.icon];
   const Icon = sectionIcon ?? defaultIcon;
 
@@ -48,7 +51,11 @@ const Section = memo((props: SectionProps) => {
         ref={setNodeRef}
         style={style}
         {...attributes}
-        className={[styles.section, currentEditingForm?.sectionId === sectionId && styles.selected].join(' ')}
+        className={[
+          styles.section,
+          isBlockShow && styles.expandsection,
+          currentEditingForm?.sectionId === sectionId && styles.selected,
+        ].join(' ')}
       >
         <span
           onClick={() => {
@@ -108,9 +115,16 @@ const Section = memo((props: SectionProps) => {
           {currentSectionConfigData.disabled ? <EyeCloseIcon /> : <EyeIcon />}
         </span>
       </div>
-      {isBlockShow && <div>展开block</div>}
+      {isBlockShow && (
+        <div className={styles.blockList}>
+          {blockOrder.map((blockId) => {
+            return <SectionBlock key={blockId} sectionId={sectionId} blockId={blockId} id={blockId} />;
+          })}
+          <AddBlock currentNum={blockOrder.length} maxNum={currentSectionSchema.max_blocks!} />
+        </div>
+      )}
     </>
   );
 });
 
-export default Section;
+export default SectionCom;
