@@ -12,8 +12,8 @@ import { useAppSelector } from '@/store/hooks';
 
 import { useUpdateConfigData } from '../../hooks/useUpdateConfigDataAndNotify';
 import AddSection from './AddSection';
-import CompBlock from './CompBlock';
 import styles from './index.module.less';
+import Section from './Section';
 const ComponentSetting = memo(() => {
   const { t } = useTranslation();
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
@@ -44,7 +44,7 @@ const ComponentSetting = memo(() => {
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={sectionConfigData.order} strategy={verticalListSortingStrategy}>
             {sectionConfigData.order.map((sectionId) => (
-              <CompBlock key={sectionId} id={sectionId} sectionId={sectionId}></CompBlock>
+              <Section key={sectionId} id={sectionId} sectionId={sectionId}></Section>
             ))}
           </SortableContext>
         </DndContext>
