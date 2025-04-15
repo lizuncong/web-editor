@@ -7,10 +7,11 @@
     "compsetting": "组件设置",
     "notfound": "Section未定义",
     "addSection": "添加Section组件",
-    "selectSection": "点击选择添加Section组件",
+    "selectSection": "点击添加Section组件",
     "collectionpicker": "选择商品分类",
     "imagepicker": "添加图片",
     "selectvideo": "选择本地视频文件",
-    "addBlock": "添加Block组件"
+    "addBlock": "添加Block组件",
+    "selectBlock": "点击添加Block组件"
   }
 }

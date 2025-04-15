@@ -120,7 +120,12 @@ const SectionCom = memo((props: SectionProps) => {
           {blockOrder.map((blockId) => {
             return <SectionBlock key={blockId} sectionId={sectionId} blockId={blockId} id={blockId} />;
           })}
-          <AddBlock currentNum={blockOrder.length} maxNum={currentSectionSchema.max_blocks!} />
+          <AddBlock
+            sectionId={sectionId}
+            sectionType={currentSectionConfigData.type}
+            currentNum={blockOrder.length}
+            maxNum={currentSectionSchema.max_blocks!}
+          />
         </div>
       )}
     </>

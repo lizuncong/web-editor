@@ -75,7 +75,7 @@ export interface SectionSettingSchemaStruct {
   [propsName: string]: any;
 }
 
-interface SectionBlockSchemaStruct {
+export interface SectionBlockSchemaStruct {
   type: BlockTypeEnum;
   icon: BlockIconTypeEnum;
   name: string;
