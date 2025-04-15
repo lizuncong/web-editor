@@ -5,6 +5,7 @@ import { changeEditorState, updateSectionConfigData } from '@/store/reducer/edit
 import {
   BlockId,
   CurrentEditingFormType,
+  SectionBlockConfigSchema,
   SectionConfigDataStruct,
   SectionConfigSchema,
   SectionId,
@@ -18,13 +19,6 @@ export const useUpdateConfigData = () => {
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
   const sectionConfigDataRef = useRef(sectionConfigData);
   sectionConfigDataRef.current = sectionConfigData;
-
-  const updateBlockConfigData = useCallback(
-    (sectionId: SectionId, blockId: BlockId, newBlock: SectionBlockConfigSchema) => {
-      console.log('block...');
-    },
-    [],
-  );
 
   const updateCurrentEditingForm = useCallback(
     (currentEditingForm: CurrentEditingFormType | undefined, shouldNotifyIframe = true) => {
@@ -95,6 +89,24 @@ export const useUpdateConfigData = () => {
       }
     },
     [dispatch],
+  );
+  const updateBlockConfigData = useCallback(
+    (sectionId: SectionId, blockId: BlockId, newBlock: SectionBlockConfigSchema) => {
+      const allSectionConfigData = sectionConfigDataRef.current;
+      const currentSectionConfigData = allSectionConfigData.sections[sectionId]!;
+      const newSectionConfigData: SectionConfigSchema = {
+        ...currentSectionConfigData,
+        settingsData: {
+          ...currentSectionConfigData.settingsData,
+          blocks: {
+            ...currentSectionConfigData.settingsData.blocks,
+            [blockId]: newBlock,
+          },
+        },
+      };
+      updateSectionConfigSectionBySectionId(sectionId, newSectionConfigData);
+    },
+    [updateSectionConfigSectionBySectionId],
   );
 
   return {
