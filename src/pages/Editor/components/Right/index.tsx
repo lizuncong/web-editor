@@ -36,7 +36,7 @@ const Right = memo(() => {
       <div className={styles.list}>
         <Form
           settings={sectionSchema.settings ?? []}
-          settingValue={sectionConfig.settingsData.settings ?? {}}
+          settingValue={sectionConfig.settingsData.settings}
           onSettingValueChange={onSettingValueChange}
         />
       </div>
