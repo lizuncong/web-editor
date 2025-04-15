@@ -5,6 +5,11 @@ export interface SectionConfigDataStruct {
   order: string[];
   sections: Record<SectionId, SectionConfigSchema | undefined>;
 }
+export interface SettingValue {
+  value: SettingDefaultValueType;
+  [propName: string]: any;
+}
+export type SettingsValue = Record<SettingId, SettingValue>;
 export interface SectionConfigSchema {
   sectionId: SectionId;
   type: SectionTypeEnum;
@@ -12,7 +17,7 @@ export interface SectionConfigSchema {
   settingsData: {
     disabled: boolean;
     type: SectionTypeEnum;
-    settings: Record<SettingId, { value: SettingDefaultValueType; [propName: string]: any }>;
+    settings: SettingsValue;
     blocks: Record<BlockId, SectionBlockConfigSchema>;
     block_order: BlockId[];
   };
@@ -20,7 +25,7 @@ export interface SectionConfigSchema {
 
 export interface SectionBlockConfigSchema {
   type: BlockTypeEnum;
-  settings: Record<SettingId, { value: SettingDefaultValueType; [propName: string]: any }>;
+  settings: SettingsValue;
 }
 
 /** =================================== schema 类型 ================================================= **/
@@ -60,7 +65,7 @@ export enum BlockIconTypeEnum {
 }
 
 type SettingDefaultValueType = number | string | boolean | null | undefined | Record<string, any>;
-interface SectionSettingSchemaStruct {
+export interface SectionSettingSchemaStruct {
   type: WidgetType;
   id?: SettingId;
   label: string;
