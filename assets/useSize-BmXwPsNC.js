@@ -1,1 +1,0 @@
-import{R as n}from"./index-B4xE-HV-.js";import{aj as t}from"./asyncToGenerator-C6G75KSx.js";const a=r=>{const e=n.useContext(t);return n.useMemo(()=>r?typeof r=="string"?r??e:typeof r=="function"?r(e):e:e,[r,e])};export{a as u};
