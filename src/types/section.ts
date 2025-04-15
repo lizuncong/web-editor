@@ -46,7 +46,7 @@ export enum WidgetType {
   video = 'video',
   video_url = 'video_url',
   text = 'text',
-  product = 'product',
+  // product = 'product',
   product_picker = 'product_picker',
   collection_picker = 'collection_picker',
   url = 'url',

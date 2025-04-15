@@ -25,13 +25,6 @@ const ImagePickerWidget = memo((props: WidgetProps) => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   const selectedUrl = (value.value ?? { url: '' }) as ImageValue;
   return (
     <ColumnWrap label={setting.label} info={setting.info}>
@@ -50,7 +43,7 @@ const ImagePickerWidget = memo((props: WidgetProps) => {
           </>
         )}
       </div>
-      <Modal footer={false} title={t('editor.imagepicker')} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal footer={false} title={t('editor.imagepicker')} open={isModalOpen}>
         <div className={styles.modal}>
           {cats.map((cat) => (
             <div

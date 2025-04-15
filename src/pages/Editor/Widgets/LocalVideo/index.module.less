@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  overflow: hidden;
+  color: #474f5e;
+  background-color: #f7f8fb;
+  border: 2px dashed #d7dbe7;
+  border-radius: 4px;
+  cursor: pointer;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  &:hover {
+    color: #356dff;
+    border-color: #356dff;
+
+    path {
+      fill: #356dff;
+    }
+  }
+}
