@@ -91,7 +91,7 @@ export const useUpdateConfigData = () => {
     [dispatch],
   );
   const updateBlockConfigData = useCallback(
-    (sectionId: SectionId, blockId: BlockId, newBlock: SectionBlockConfigSchema) => {
+    (sectionId: SectionId, blockId: BlockId, newBlock: SectionBlockConfigSchema | undefined) => {
       const allSectionConfigData = sectionConfigDataRef.current;
       const currentSectionConfigData = allSectionConfigData.sections[sectionId]!;
       const newSectionConfigData: SectionConfigSchema = {
@@ -100,10 +100,20 @@ export const useUpdateConfigData = () => {
           ...currentSectionConfigData.settingsData,
           blocks: {
             ...currentSectionConfigData.settingsData.blocks,
-            [blockId]: newBlock,
           },
         },
       };
+      if (!newBlock) {
+        newSectionConfigData.settingsData.block_order = newSectionConfigData.settingsData.block_order.filter(
+          (blockid) => blockid !== blockId,
+        );
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        newSectionConfigData.settingsData.blocks[blockId] = undefined;
+      } else {
+        newSectionConfigData.settingsData.blocks[blockId] = newBlock;
+      }
+
       updateSectionConfigSectionBySectionId(sectionId, newSectionConfigData);
     },
     [updateSectionConfigSectionBySectionId],

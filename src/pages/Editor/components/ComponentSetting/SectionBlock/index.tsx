@@ -33,7 +33,6 @@ const SectionBlock = memo((props: SectionBlockProps) => {
   const currentBlockSchema = allSectionSchema[sectionType].blocks?.find((block) => block.type === blockType);
   if (!currentBlockSchema) return;
   const Icon = iconMap[currentBlockSchema.icon] || defaultIcon;
-  console.log('currentBlockScheam...', currentBlockSchema);
   return (
     <>
       <div className={[styles.section, currentEditingForm?.blockId === blockId && styles.selected].join(' ')}>
@@ -47,7 +46,12 @@ const SectionBlock = memo((props: SectionBlockProps) => {
         </span>
 
         <span className={styles.name}>{t(currentBlockSchema.name)}</span>
-        <span className={styles.opicon}>
+        <span
+          className={styles.opicon}
+          onClick={() => {
+            updateBlockConfigData(sectionId, blockId, undefined);
+          }}
+        >
           <DelIcon />
         </span>
         <span
