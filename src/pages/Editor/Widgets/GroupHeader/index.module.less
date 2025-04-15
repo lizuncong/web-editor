@@ -1,0 +1,27 @@
+.label {
+  color: rgb(71, 79, 94);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.info {
+  margin-top: 8px;
+  color: #7a8499;
+  font-size: 12px;
+}
+
+.group {
+  position: relative;
+  margin-bottom: 24px;
+  padding-top: 20px;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: -12px;
+    left: -12px;
+    height: 4px;
+    background-color: #f0f3f9;
+    content: '';
+  }
+}
