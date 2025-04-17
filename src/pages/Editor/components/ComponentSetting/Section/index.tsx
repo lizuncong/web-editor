@@ -1,4 +1,6 @@
-import { useSortable } from '@dnd-kit/sortable';
+import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { arrayMove, useSortable } from '@dnd-kit/sortable';
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -31,8 +33,30 @@ const SectionCom = memo((props: SectionProps) => {
   const currentSectionConfigData = allSectionConfigData.sections[sectionId];
   const currentSectionSchema = currentSectionConfigData?.type ? allSectionSchema[currentSectionConfigData.type] : null;
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
-  const { updateAllSectionConfigData, updateCurrentEditingForm, updateSectionConfigSectionBySectionId } =
-    useUpdateConfigData();
+  const {
+    updateAllSectionConfigData,
+    updateBlockOrderData,
+    updateCurrentEditingForm,
+    updateSectionConfigSectionBySectionId,
+  } = useUpdateConfigData();
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
+  const blockOrder = currentSectionConfigData?.settingsData.block_order ?? [];
+
+  function handleDragEnd(event: any) {
+    const { active, over } = event;
+    console.log('active', active.id, over.id);
+    if (active.id !== over.id) {
+      const oldIndex = blockOrder.indexOf(active.id);
+      const newIndex = blockOrder.indexOf(over.id);
+
+      updateBlockOrderData(sectionId, arrayMove(blockOrder, oldIndex, newIndex));
+    }
+  }
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -40,7 +64,6 @@ const SectionCom = memo((props: SectionProps) => {
   if (!currentSectionConfigData || !currentSectionSchema) {
     return <div className={styles.section}>{t('editor.notfound')}</div>;
   }
-  const blockOrder = currentSectionConfigData.settingsData.block_order;
   const sectionIcon = currentSectionSchema.icon && iconMap[currentSectionSchema.icon];
   const Icon = sectionIcon ?? defaultIcon;
 
@@ -117,9 +140,14 @@ const SectionCom = memo((props: SectionProps) => {
       </div>
       {isBlockShow && (
         <div className={styles.blockList}>
-          {blockOrder.map((blockId) => {
-            return <SectionBlock key={blockId} sectionId={sectionId} blockId={blockId} id={blockId} />;
-          })}
+          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <SortableContext items={blockOrder} strategy={verticalListSortingStrategy}>
+              {blockOrder.map((blockId) => {
+                return <SectionBlock key={blockId} sectionId={sectionId} blockId={blockId} id={blockId} />;
+              })}
+            </SortableContext>
+          </DndContext>
+
           <AddBlock
             sectionId={sectionId}
             sectionType={currentSectionConfigData.type}

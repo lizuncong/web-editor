@@ -1,3 +1,5 @@
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -25,9 +27,14 @@ const SectionBlock = memo((props: SectionBlockProps) => {
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData).sections[sectionId]!;
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
   const { updateBlockConfigData } = useUpdateConfigData();
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
+
   const sectionType = sectionConfigData.type;
   const currentBlockConfigData = sectionConfigData.settingsData.blocks[blockId];
-
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
   const blockType = currentBlockConfigData.type;
 
   const currentBlockSchema = allSectionSchema[sectionType].blocks?.find((block) => block.type === blockType);
@@ -35,12 +42,17 @@ const SectionBlock = memo((props: SectionBlockProps) => {
   const Icon = iconMap[currentBlockSchema.icon] || defaultIcon;
   return (
     <>
-      <div className={[styles.section, currentEditingForm?.blockId === blockId && styles.selected].join(' ')}>
+      <div
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        className={[styles.section, currentEditingForm?.blockId === blockId && styles.selected].join(' ')}
+      >
         <span className={styles.dragwrap}>
           <span className={[styles.icon, styles.sicon].join(' ')}>
             <Icon />
           </span>
-          <span className={[styles.icon, styles.dragicon].join(' ')}>
+          <span {...listeners} className={[styles.icon, styles.dragicon].join(' ')}>
             <DragIcon />
           </span>
         </span>

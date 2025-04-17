@@ -90,6 +90,21 @@ export const useUpdateConfigData = () => {
     },
     [dispatch],
   );
+  const updateBlockOrderData = useCallback(
+    (sectionId: SectionId, newOrder: BlockId[]) => {
+      const allSectionConfigData = sectionConfigDataRef.current;
+      const currentSectionConfigData = allSectionConfigData.sections[sectionId]!;
+      const newSectionConfigData: SectionConfigSchema = {
+        ...currentSectionConfigData,
+        settingsData: {
+          ...currentSectionConfigData.settingsData,
+          block_order: newOrder,
+        },
+      };
+      updateSectionConfigSectionBySectionId(sectionId, newSectionConfigData);
+    },
+    [updateSectionConfigSectionBySectionId],
+  );
   const updateBlockConfigData = useCallback(
     (sectionId: SectionId, blockId: BlockId, newBlock: SectionBlockConfigSchema | undefined) => {
       const allSectionConfigData = sectionConfigDataRef.current;
@@ -126,5 +141,6 @@ export const useUpdateConfigData = () => {
     updateAllSectionConfigData,
     updateCurrentEditingForm,
     updateBlockConfigData,
+    updateBlockOrderData,
   };
 };
