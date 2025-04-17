@@ -10,7 +10,7 @@ const Text = memo((props: WidgetProps) => {
     <ColumnWrap label={setting.label} info={setting.info}>
       <Input
         placeholder="请输入文案"
-        value={value.value as string}
+        value={value?.value as string}
         onChange={(e) => {
           onChange({ value: e.target.value });
         }}

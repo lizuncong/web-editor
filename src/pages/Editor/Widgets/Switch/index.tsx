@@ -12,7 +12,7 @@ const SwitchWidget = memo((props: WidgetProps) => {
     <RowWrap label={setting.label} info={setting.info}>
       <div className={styles.row}>
         <Switch
-          value={value.value as boolean}
+          value={value?.value as boolean}
           onChange={(newv) => {
             onChange({ value: newv });
           }}

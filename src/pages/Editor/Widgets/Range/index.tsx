@@ -24,14 +24,14 @@ const Range = memo((props: WidgetProps) => {
           max={max}
           step={step}
           onChange={onChangeInner}
-          value={value.value as number}
+          value={value?.value as number}
         />
         <InputNumber
           className={styles.input}
           min={min}
           max={max}
           step={step}
-          value={value.value as number}
+          value={value?.value as number}
           onChange={onChangeInner}
           suffix={setting.unit?.includes('.') ? t(setting.unit) : setting.unit}
           controls={false}

@@ -12,7 +12,7 @@ const SelectWidget = memo((props: WidgetProps) => {
   return (
     <ColumnWrap label={setting.label} info={setting.info}>
       <AntdSelect<string>
-        value={value.value as string}
+        value={value?.value as string}
         style={{ width: '100%' }}
         onChange={(v) => {
           onChange({ value: v });
