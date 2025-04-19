@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import LanguageSelect from '@/components/LanguageSelect';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { changeEditorState } from '@/store/reducer/editor';
 import { PreviewTypeEnum } from '@/types/editor';
@@ -43,7 +44,9 @@ const Header = memo(() => {
           </span>
         ))}
       </div>
-      <div className={styles.right}></div>
+      <div className={styles.right}>
+        <LanguageSelect />
+      </div>
     </header>
   );
 });
