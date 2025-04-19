@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { themes } from '@/constant';
+import { Theme } from '@/types/enum';
 
 import styles from './index.module.less';
 
 const Home = memo(() => {
   const { t } = useTranslation();
+
   const navigate = useNavigate();
   return (
     <div className={styles.home}>
@@ -22,8 +24,12 @@ const Home = memo(() => {
               <div className={styles.title}>
                 <span>{theme.title}</span>
                 <span
-                  className={styles.edit}
+                  className={[styles.edit, theme.theme === Theme.MODERN && styles.disabled].join(' ')}
                   onClick={() => {
+                    if (theme.theme === Theme.MODERN) {
+                      // messageApi.warning(developing);
+                      return;
+                    }
                     navigate(`/editor?theme=${theme.theme}`);
                   }}
                 >
