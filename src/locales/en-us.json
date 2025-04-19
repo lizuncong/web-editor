@@ -4,6 +4,19 @@
     "developing": "Coming Soon!",
     "edit": "Edit"
   },
+  "theme": {
+    "arise": {
+      "type": "Arise",
+      "default": "Minimalist",
+      "food": "Food",
+      "grounded": "Dynamic",
+      "hammer": "Mechanical"
+    },
+    "modern": {
+      "type": "Modern",
+      "default": "Minimalist"
+    }
+  },
   "editor": {
     "header": "Landing Page Low-Code Editor",
     "compsetting": "Component Settings",
@@ -17,6 +30,7 @@
     "selectBlock": "Click to Add Block Component",
     "notfoundtheme": "Theme not found, return to homepage to select theme",
     "backhome": "Back to Homepage",
-    "nosetting": "Click to select a component to edit on the left sidebar"
+    "nosetting": "Click to select a component to edit on the left sidebar",
+    "themesetting": "Theme Settings"
   }
 }
