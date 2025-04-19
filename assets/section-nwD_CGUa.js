@@ -1,1 +1,0 @@
-var a=(r=>(r.range="range",r.switch="switch",r.group_header="group_header",r.select="select",r.image_picker="image_picker",r.video="video",r.video_url="video_url",r.text="text",r.product_picker="product_picker",r.collection_picker="collection_picker",r.url="url",r))(a||{}),o=(r=>(r.image="image",r.normal="normal",r.video="video",r))(o||{});export{o as B,a as W};
