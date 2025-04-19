@@ -108,3 +108,27 @@ export interface CurrentEditingFormType {
   sectionId: SectionId;
   blockId?: BlockId;
 }
+
+export enum AriseThemeType {
+  Default = 'default',
+  Food = 'food',
+  Grounded = 'grounded',
+  Hammer = 'hammer',
+}
+
+export enum ModernThemeType {
+  Default = 'default',
+}
+
+export interface ThemeSchemaStruct {
+  info: Record<string, string>;
+  blocks: {
+    name: string;
+    settings: SectionSettingSchemaStruct[];
+  }[];
+  presets: {
+    type: AriseThemeType;
+    name: string;
+    settings: Record<string, SettingDefaultValueType>;
+  }[];
+}

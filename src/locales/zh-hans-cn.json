@@ -4,6 +4,19 @@
     "developing": "敬请期待！",
     "edit": "编辑"
   },
+  "theme": {
+    "arise": {
+      "type": "Arise",
+      "default": "简约",
+      "food": "食物",
+      "grounded": "动感",
+      "hammer": "机械"
+    },
+    "modern": {
+      "type": "Modern",
+      "default": "简约"
+    }
+  },
   "editor": {
     "header": "落地页低代码编辑器",
     "compsetting": "组件设置",

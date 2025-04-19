@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { changeEditorState, resetEditorState } from '@/store/reducer/editor';
 import { SideBarTypeEnum } from '@/types/editor';
 import { Theme } from '@/types/enum';
+import { AriseThemeType, ModernThemeType } from '@/types/section';
 
 import ComponentIcon from './assets/component.svg?react';
 import ThemeIcon from './assets/theme.svg?react';
@@ -37,12 +38,16 @@ const Editor = memo(() => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const theme = searchParams.get('theme');
+  const themeType = searchParams.get('themetype');
   useEffect(() => {
     iframeCommunicator.notifyLanguageChange(language);
     if (theme) {
       dispatch(changeEditorState({ theme: theme as Theme }));
     }
-  }, [dispatch, language, theme]);
+    if (themeType) {
+      dispatch(changeEditorState({ themeType: themeType as AriseThemeType | ModernThemeType }));
+    }
+  }, [dispatch, language, theme, themeType]);
   // 监听iframe的消息
   useListenerMsgFromIframe();
   useEffect(() => {

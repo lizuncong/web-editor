@@ -18,29 +18,33 @@ const Home = memo(() => {
         <LanguageSelect />
       </div>
       <div className={styles.list}>
-        {themes.map((theme) => {
-          return (
-            <div className={styles.item} key={theme.theme}>
-              <div className={styles.imgWrapper}>
-                <img className={styles.img} src={theme.img} alt="" />
+        {themes.map((themeConfig) => {
+          return themeConfig.types.map((theme) => {
+            return (
+              <div className={styles.item} key={theme.type}>
+                <div className={styles.imgWrapper}>
+                  <img className={styles.img} src={theme.img} alt="" />
+                </div>
+                <div className={styles.title}>
+                  <span>
+                    {themeConfig.title}-{t(theme.title)}
+                  </span>
+                  <span
+                    className={[styles.edit, themeConfig.theme === Theme.MODERN && styles.disabled].join(' ')}
+                    onClick={() => {
+                      if (themeConfig.theme === Theme.MODERN) {
+                        // messageApi.warning(developing);
+                        return;
+                      }
+                      navigate(`/editor?theme=${themeConfig.theme}&themetype=${theme.type}`);
+                    }}
+                  >
+                    {t('home.edit')}
+                  </span>
+                </div>
               </div>
-              <div className={styles.title}>
-                <span>{theme.title}</span>
-                <span
-                  className={[styles.edit, theme.theme === Theme.MODERN && styles.disabled].join(' ')}
-                  onClick={() => {
-                    if (theme.theme === Theme.MODERN) {
-                      // messageApi.warning(developing);
-                      return;
-                    }
-                    navigate(`/editor?theme=${theme.theme}`);
-                  }}
-                >
-                  {t('home.edit')}
-                </span>
-              </div>
-            </div>
-          );
+            );
+          });
         })}
       </div>
     </div>
