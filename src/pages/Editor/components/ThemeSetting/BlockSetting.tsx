@@ -5,6 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 import { SettingValue, ThemeSchemaBlockStruct } from '@/types/section';
 
 import ExpandIcon from '../../assets/expand.svg?react';
+import { useUpdateConfigData } from '../../hooks/useUpdateConfigDataAndNotify';
 import { getWidget } from '../../Widgets';
 import styles from './index.module.less';
 const BlockSetting = memo(({ block }: { block: ThemeSchemaBlockStruct }) => {
@@ -12,6 +13,7 @@ const BlockSetting = memo(({ block }: { block: ThemeSchemaBlockStruct }) => {
   const themeConfig = useAppSelector((state) => state.editor.themeConfig);
   const { t } = useTranslation();
   const [isExpand, setIsExpand] = useState(false);
+  const { updateThemeConfig } = useUpdateConfigData();
   return (
     <>
       <div
@@ -39,6 +41,13 @@ const BlockSetting = memo(({ block }: { block: ThemeSchemaBlockStruct }) => {
                 setting={setting}
                 onChange={(v) => {
                   console.log('onchange', v);
+                  updateThemeConfig({
+                    ...themeConfig!,
+                    settings: {
+                      ...themeConfig!.settings,
+                      [setting.id!]: isString ? v.value : { ...v, value: v.value },
+                    },
+                  });
                 }}
                 value={value}
               />

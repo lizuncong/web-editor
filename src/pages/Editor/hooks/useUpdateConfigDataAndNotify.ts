@@ -9,6 +9,7 @@ import {
   SectionConfigDataStruct,
   SectionConfigSchema,
   SectionId,
+  ThemePresetType,
 } from '@/types/section';
 
 import iframeCommunicator from '../IFrameCommunicator';
@@ -20,6 +21,19 @@ export const useUpdateConfigData = () => {
   const sectionConfigDataRef = useRef(sectionConfigData);
   sectionConfigDataRef.current = sectionConfigData;
 
+  const updateThemeConfig = useCallback(
+    (themeConfig: ThemePresetType | undefined, shouldNotifyIframe = true) => {
+      dispatch(
+        changeEditorState({
+          themeConfig,
+        }),
+      );
+      if (shouldNotifyIframe) {
+        iframeCommunicator.notifyThemeConfigChange(themeConfig);
+      }
+    },
+    [dispatch],
+  );
   const updateCurrentEditingForm = useCallback(
     (currentEditingForm: CurrentEditingFormType | undefined, shouldNotifyIframe = true) => {
       dispatch(
@@ -142,5 +156,6 @@ export const useUpdateConfigData = () => {
     updateCurrentEditingForm,
     updateBlockConfigData,
     updateBlockOrderData,
+    updateThemeConfig,
   };
 };

@@ -60,6 +60,10 @@ class FrameCommunicator {
 
     iframeWindow.contentWindow.postMessage(message, this.origin);
   }
+  // theme配置项发生了改变
+  public notifyThemeConfigChange(themeConfig: ThemePresetType | undefined) {
+    this.sendMessage(CommunicateType.themeConfigChange, themeConfig);
+  }
   // lanuage发生了改变
   public notifyLanguageChange(language: LanguageEnum) {
     this.sendMessage(CommunicateType.language, language);
