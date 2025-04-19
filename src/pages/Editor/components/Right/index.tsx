@@ -19,9 +19,9 @@ const Right = memo(() => {
     (newSettingValue: SettingsValue) => {
       console.log('newSettingValue...', newSettingValue);
       const newSectionConfigData: SectionConfigSchema = {
-        ...sectionConfig,
+        ...sectionConfig!,
         settingsData: {
-          ...sectionConfig.settingsData,
+          ...sectionConfig!.settingsData,
           settings: newSettingValue,
         },
       };
