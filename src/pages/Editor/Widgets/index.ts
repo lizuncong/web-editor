@@ -32,6 +32,8 @@ const Widgets: Record<WidgetType, LazyExoticComponent<MemoExoticComponent<(props
   // [WidgetType.product]: TextWidget,
   [WidgetType.product_picker]: TextWidget, // 选择商品
   [WidgetType.url]: TextWidget, // 跳转链接
+  [WidgetType.color]: TextWidget, // 颜色
+  [WidgetType.font]: TextWidget, // 字体
 };
 
 export default Widgets;

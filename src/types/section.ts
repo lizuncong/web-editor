@@ -51,6 +51,8 @@ export enum WidgetType {
   product_picker = 'product_picker',
   collection_picker = 'collection_picker',
   url = 'url',
+  color = 'color',
+  font = 'font',
 }
 export enum BlockTypeEnum {
   image = 'image',
