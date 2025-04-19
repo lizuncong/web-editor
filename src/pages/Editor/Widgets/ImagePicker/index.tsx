@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import ColumnWrap from '@/components/ColumnWrap';
 import Drawer from '@/components/Drawer';
+import { getThemeOrigin } from '@/constant';
 import cat1 from '@/pages/Editor/assets/1.jpg';
 import cat3 from '@/pages/Editor/assets/3.jpg';
 import cat4 from '@/pages/Editor/assets/4.jpeg';
@@ -54,7 +55,7 @@ const ImagePickerWidget = memo((props: WidgetProps) => {
           {cats.map((cat) => (
             <div
               onClick={() => {
-                onChange({ value: { url: cat } });
+                onChange({ value: { url: cat, origin: getThemeOrigin() } });
               }}
               key={cat}
               className={[styles.imgwrap, selectedUrl.url === cat && styles.selected].join(' ')}
