@@ -1,8 +1,8 @@
-import { Modal } from 'antd';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import ColumnWrap from '@/components/ColumnWrap';
+import Drawer from '@/components/Drawer';
 import cat1 from '@/pages/Editor/assets/1.jpg';
 import cat3 from '@/pages/Editor/assets/3.jpg';
 import cat4 from '@/pages/Editor/assets/4.jpeg';
@@ -43,11 +43,10 @@ const ImagePickerWidget = memo((props: WidgetProps) => {
           </>
         )}
       </div>
-      <Modal
-        onCancel={() => {
+      <Drawer
+        onClose={() => {
           setIsModalOpen(false);
         }}
-        footer={false}
         title={t('editor.imagepicker')}
         open={isModalOpen}
       >
@@ -65,7 +64,7 @@ const ImagePickerWidget = memo((props: WidgetProps) => {
             </div>
           ))}
         </div>
-      </Modal>
+      </Drawer>
     </ColumnWrap>
   );
 });

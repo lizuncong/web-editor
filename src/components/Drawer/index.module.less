@@ -1,0 +1,60 @@
+@import url('@/styles/variable.less');
+
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999;
+  display: none;
+  width: @material-width;
+  background-color: #fff;
+
+  &.open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: @header-height;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .content {
+    flex: 1;
+    padding-top: 12px;
+    padding-left: 16px;
+    overflow: auto;
+  }
+
+  .close {
+    margin-right: 16px;
+    cursor: pointer;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.left {
+    right: auto;
+    left: 0;
+    width: calc(@material-width + @sidebar-width);
+
+    .header {
+      padding-left: 16px;
+    }
+
+    .close {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+}
