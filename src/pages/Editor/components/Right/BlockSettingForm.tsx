@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 import { SectionBlockConfigSchema, SettingsValue } from '@/types/section';
 
 import { useUpdateConfigData } from '../../hooks/useUpdateConfigDataAndNotify';
-import Form from './Form';
+import Form from '../Form';
 const BlockSettingForm = memo(() => {
   const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm)!;
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
