@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { changeEditorState } from '@/store/reducer/editor';
+import { changeEditorState, resetEditorState } from '@/store/reducer/editor';
 import { SideBarTypeEnum } from '@/types/editor';
 import { Theme } from '@/types/enum';
 
@@ -42,6 +42,11 @@ const Editor = memo(() => {
   }, [dispatch, theme]);
   // 监听iframe的消息
   useListenerMsgFromIframe();
+  useEffect(() => {
+    return () => {
+      dispatch(resetEditorState());
+    };
+  }, [dispatch]);
   if (!theme) {
     return (
       <div className={styles.notfound}>
