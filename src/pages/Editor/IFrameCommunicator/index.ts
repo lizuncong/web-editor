@@ -1,4 +1,5 @@
 import { getThemeOrigin } from '@/constant';
+import { LanguageEnum } from '@/types/enum';
 import {
   CurrentEditingFormType,
   SectionConfigDataStruct,
@@ -10,7 +11,6 @@ import {
 import { resolvablePromise } from '@/utils/resolve';
 
 import { CommunicateListenerType, CommunicateType } from './type';
-
 class FrameCommunicator {
   private origin: string;
   private iframeWindowPromise: any;
@@ -58,7 +58,10 @@ class FrameCommunicator {
 
     iframeWindow.contentWindow.postMessage(message, this.origin);
   }
-
+  // lanuage发生了改变
+  public notifyLanguageChange(language: LanguageEnum) {
+    this.sendMessage(CommunicateType.language, language);
+  }
   // currentEditingForm发生了改变
   public notifyCurrentEditingFormChange(currentEditingForm: CurrentEditingFormType | undefined) {
     this.sendMessage(CommunicateType.currentEditingForm, currentEditingForm);
@@ -119,7 +122,7 @@ class FrameCommunicator {
     return this.onMessage(CommunicateType.sectionConfigData, handler);
   }
   // 监听section schema多语言语料改变的消息
-  public onSectionSchemaLanguage(handler: (data: { i18nKey: string; locales: any }) => void) {
+  public onSectionSchemaLanguage(handler: (data: { i18nKey: LanguageEnum; locales: any }) => void) {
     return this.onMessage(CommunicateListenerType.onSectionSchemaLanguage, handler);
   }
   private offMessage(type: string, handler: (data: any) => void): void {

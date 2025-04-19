@@ -12,6 +12,7 @@ import ThemeIcon from './assets/theme.svg?react';
 import Header from './components/Header';
 import Preview from './components/Preview';
 import { useListenerMsgFromIframe } from './hooks/useListenerMsgFromIframe';
+import iframeCommunicator from './IFrameCommunicator';
 import styles from './index.module.less';
 const RightDrawer = lazy(() => import(/* webpackChunkName: 'rightDrawer' */ './components/Right'));
 
@@ -31,15 +32,17 @@ const sideBarIcons = [
 const Editor = memo(() => {
   const { t } = useTranslation();
   const sideBarType = useAppSelector((state) => state.editor.sideBarType);
+  const language = useAppSelector((state) => state.global.language);
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const theme = searchParams.get('theme');
   useEffect(() => {
+    iframeCommunicator.notifyLanguageChange(language);
     if (theme) {
       dispatch(changeEditorState({ theme: theme as Theme }));
     }
-  }, [dispatch, theme]);
+  }, [dispatch, language, theme]);
   // 监听iframe的消息
   useListenerMsgFromIframe();
   useEffect(() => {
