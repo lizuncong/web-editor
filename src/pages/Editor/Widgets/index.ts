@@ -19,21 +19,22 @@ const collectionPickerWidget = lazy(
 );
 const imagePickerWidget = lazy(() => import(/* webpackChunkName: 'imagePickerWidget' */ './ImagePicker'));
 
-const Widgets: Record<WidgetType, LazyExoticComponent<MemoExoticComponent<(props: WidgetProps) => JSX.Element>>> = {
-  [WidgetType.text]: TextWidget,
-  [WidgetType.range]: RangeWidget,
-  [WidgetType.select]: selectWidget,
-  [WidgetType.switch]: switchWidget,
-  [WidgetType.group_header]: groupHeaderWidget,
-  [WidgetType.collection_picker]: collectionPickerWidget,
-  [WidgetType.image_picker]: imagePickerWidget,
-  [WidgetType.video]: localVideoWidget, // 选择本地视频
-  [WidgetType.video_url]: ExternalVideoUrlWidget, // 输入外部视频链接
-  // [WidgetType.product]: TextWidget,
-  [WidgetType.product_picker]: TextWidget, // 选择商品
-  [WidgetType.url]: TextWidget, // 跳转链接
-  [WidgetType.color]: TextWidget, // 颜色
-  [WidgetType.font]: TextWidget, // 字体
+export const getWidget = (type: WidgetType) => {
+  const Widgets: Record<WidgetType, LazyExoticComponent<MemoExoticComponent<(props: WidgetProps) => JSX.Element>>> = {
+    [WidgetType.text]: TextWidget,
+    [WidgetType.range]: RangeWidget,
+    [WidgetType.select]: selectWidget,
+    [WidgetType.switch]: switchWidget,
+    [WidgetType.group_header]: groupHeaderWidget,
+    [WidgetType.collection_picker]: collectionPickerWidget,
+    [WidgetType.image_picker]: imagePickerWidget,
+    [WidgetType.video]: localVideoWidget, // 选择本地视频
+    [WidgetType.video_url]: ExternalVideoUrlWidget, // 输入外部视频链接
+    // [WidgetType.product]: TextWidget,
+    [WidgetType.product_picker]: TextWidget, // 选择商品
+    [WidgetType.url]: TextWidget, // 跳转链接
+    [WidgetType.color]: TextWidget, // 颜色
+    [WidgetType.font]: TextWidget, // 字体
+  };
+  return Widgets[type] || TextWidget;
 };
-
-export default Widgets;

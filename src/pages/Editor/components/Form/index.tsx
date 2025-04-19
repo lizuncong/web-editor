@@ -1,8 +1,8 @@
 import { memo, useCallback, useRef } from 'react';
 
-import Widgets from '@/pages/Editor/Widgets';
 import { SectionSettingSchemaStruct, SettingsValue, SettingValue } from '@/types/section';
 
+import { getWidget } from '../../Widgets';
 import styles from './index.module.less';
 interface FormProps {
   settings: SectionSettingSchemaStruct[];
@@ -28,7 +28,7 @@ const Form = memo((props: FormProps) => {
       <div className={styles.header}>{title}</div>
       <div className={styles.list}>
         {settings.map((setting) => {
-          const Widget = Widgets[setting.type];
+          const Widget = getWidget(setting.type);
           const v = setting.id ? settingValue[setting.id] : { value: '' };
           return (
             <Widget

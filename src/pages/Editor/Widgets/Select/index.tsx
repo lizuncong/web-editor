@@ -17,10 +17,13 @@ const SelectWidget = memo((props: WidgetProps) => {
         onChange={(v) => {
           onChange({ value: v });
         }}
-        options={(setting.options ?? []).map((op: any) => ({
-          label: t(op.label),
-          value: op.value,
-        }))}
+        options={(setting.options ?? []).map((op: any) => {
+          const isString = typeof op === 'string';
+          return {
+            label: isString ? t(op) : t(op.label),
+            value: isString ? op : op.value,
+          };
+        })}
       />
     </ColumnWrap>
   );
