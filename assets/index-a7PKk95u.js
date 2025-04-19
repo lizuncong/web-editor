@@ -1,1 +1,0 @@
-import{r as s,j as t}from"./index-w8kvCX9q.js";import{C as l}from"./index-Bd0tx-8_.js";import{u as a}from"./constant-COT4HU56.js";const u=s.memo(e=>{const{value:r,setting:o,onChange:i}=e,{t:n}=a();return t.jsx(l,{label:o.label,info:o.info,children:t.jsx("div",{onClick:()=>{i({value:r})},children:n("editor.collectionpicker")})})});export{u as default};
