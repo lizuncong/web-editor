@@ -24,4 +24,12 @@
     background-color: #f0f3f9;
     content: '';
   }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:first-child::before {
+    display: none;
+  }
 }
