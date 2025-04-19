@@ -2,6 +2,7 @@ import { memo } from 'react';
 
 import { useAppSelector } from '@/store/hooks';
 
+import BlockSettingForm from './BlockSettingForm';
 import styles from './index.module.less';
 import SectionSettingForm from './SectionSettingForm';
 const Right = memo(() => {
@@ -12,6 +13,10 @@ const Right = memo(() => {
   }
   if (currentEditingForm.sectionId && !currentEditingForm.blockId) {
     return <SectionSettingForm />;
+  }
+
+  if (currentEditingForm.sectionId && currentEditingForm.blockId) {
+    return <BlockSettingForm />;
   }
 });
 

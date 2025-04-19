@@ -26,7 +26,7 @@ const SectionBlock = memo((props: SectionBlockProps) => {
   const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm);
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData).sections[sectionId]!;
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
-  const { updateBlockConfigData } = useUpdateConfigData();
+  const { updateBlockConfigData, updateCurrentEditingForm } = useUpdateConfigData();
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
 
   const sectionType = sectionConfigData.type;
@@ -40,13 +40,14 @@ const SectionBlock = memo((props: SectionBlockProps) => {
   const currentBlockSchema = allSectionSchema[sectionType].blocks?.find((block) => block.type === blockType);
   if (!currentBlockSchema) return;
   const Icon = iconMap[currentBlockSchema.icon] || defaultIcon;
+  const isSelected = currentEditingForm?.blockId === blockId;
   return (
     <>
       <div
         ref={setNodeRef}
         style={style}
         {...attributes}
-        className={[styles.section, currentEditingForm?.blockId === blockId && styles.selected].join(' ')}
+        className={[styles.section, isSelected && styles.selected].join(' ')}
       >
         <span className={styles.dragwrap}>
           <span className={[styles.icon, styles.sicon].join(' ')}>
@@ -57,7 +58,22 @@ const SectionBlock = memo((props: SectionBlockProps) => {
           </span>
         </span>
 
-        <span className={styles.name}>{t(currentBlockSchema.name)}</span>
+        <span
+          className={styles.name}
+          onClick={() => {
+            if (isSelected) {
+              updateCurrentEditingForm(undefined);
+            } else {
+              updateCurrentEditingForm({
+                type: currentBlockSchema.type,
+                sectionId: sectionId,
+                blockId,
+              });
+            }
+          }}
+        >
+          {t(currentBlockSchema.name)}
+        </span>
         <span
           className={styles.opicon}
           onClick={() => {

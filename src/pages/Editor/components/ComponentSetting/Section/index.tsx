@@ -68,17 +68,14 @@ const SectionCom = memo((props: SectionProps) => {
   const Icon = sectionIcon ?? defaultIcon;
 
   const hasBlocks = currentSectionSchema.max_blocks && currentSectionSchema.blocks?.length;
+  const isSelected = currentEditingForm?.sectionId === sectionId && !currentEditingForm?.blockId;
   return (
     <>
       <div
         ref={setNodeRef}
         style={style}
         {...attributes}
-        className={[
-          styles.section,
-          isBlockShow && styles.expandsection,
-          currentEditingForm?.sectionId === sectionId && styles.selected,
-        ].join(' ')}
+        className={[styles.section, isBlockShow && styles.expandsection, isSelected && styles.selected].join(' ')}
       >
         <span
           onClick={() => {
@@ -99,7 +96,7 @@ const SectionCom = memo((props: SectionProps) => {
 
         <span
           onClick={() => {
-            if (currentEditingForm?.sectionId === sectionId) {
+            if (isSelected) {
               updateCurrentEditingForm(undefined);
             } else {
               updateCurrentEditingForm({
