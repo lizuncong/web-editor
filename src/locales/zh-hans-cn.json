@@ -30,6 +30,7 @@
     "selectBlock": "点击添加Block组件",
     "notfoundtheme": "主题不存在，返回首页选择主题",
     "backhome": "返回首页",
-    "nosetting": "在左侧边栏点击选择一个组件进行编辑"
+    "nosetting": "在左侧边栏点击选择一个组件进行编辑",
+    "themesetting": "主题设置"
   }
 }

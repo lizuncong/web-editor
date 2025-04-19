@@ -128,11 +128,13 @@ export interface ThemePresetType {
   name: string;
   settings: Record<string, SettingDefaultValueType>;
 }
+
+export interface ThemeSchemaBlockStruct {
+  name: string;
+  settings: SectionSettingSchemaStruct[];
+}
 export interface ThemeSchemaStruct {
   info: Record<string, string>;
-  blocks: {
-    name: string;
-    settings: SectionSettingSchemaStruct[];
-  }[];
+  blocks: ThemeSchemaBlockStruct[];
   presets: ThemePresetType[];
 }

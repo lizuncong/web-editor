@@ -2,6 +2,52 @@
 
 .container {
   display: flex;
+  flex-direction: column;
   width: @material-width;
+  padding-left: 12px;
   overflow: hidden;
+
+  .header {
+    padding: 16px 0;
+    color: #242833;
+    font-weight: 600;
+    font-size: 20px;
+    border-bottom: 1px solid #eaedf1;
+  }
+
+  .list {
+    flex: 1;
+    overflow: auto;
+    background-color: white;
+    border-radius: 8px;
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 19px 12px;
+      overflow: hidden;
+      color: #242833;
+      font-weight: 500;
+      font-size: 14px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      border-bottom: 1px solid #eef1f7;
+      cursor: pointer;
+      user-select: none;
+
+      .expandIcon {
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        color: #242833;
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+
+    .expand {
+      .expandIcon {
+        transform: rotate(90deg);
+      }
+    }
+  }
 }
