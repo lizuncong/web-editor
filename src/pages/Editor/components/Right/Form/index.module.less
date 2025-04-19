@@ -1,2 +1,26 @@
-.form {
+@import url('@/styles/variable.less');
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: @material-width;
+  overflow: hidden;
+  background-color: white;
+  border-left: 1px solid #eaedf1;
+  user-select: none;
+
+  .header {
+    padding: 16px 12px;
+    color: #242833;
+    font-weight: 600;
+    font-size: 20px;
+    border-bottom: 1px solid #eaedf1;
+  }
+
+  .list {
+    flex: 1;
+    padding: 12px;
+    padding-top: 24px;
+    overflow: auto;
+  }
 }
