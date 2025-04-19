@@ -5,7 +5,7 @@ import hammerImg from '@/assets/hammer.jpg';
 import modernImg from '@/assets/modern.jpg';
 
 import { Theme } from './types/enum';
-import { AriseThemeType, ModernThemeType } from './types/section';
+import { AriseThemeStyle, ModernThemeStyle } from './types/section';
 export const getThemeOrigin = () => {
   return isDev() ? 'http://localhost:5174' : 'https://lizuncong.github.io';
 };
@@ -20,24 +20,24 @@ export const themes = [
   {
     title: 'Arise',
     theme: Theme.ARISE,
-    types: [
+    styles: [
       {
-        type: AriseThemeType.Default,
+        style: AriseThemeStyle.Default,
         img: ariseImg,
         title: 'theme.arise.default',
       },
       {
-        type: AriseThemeType.Food,
+        style: AriseThemeStyle.Food,
         img: foodImg,
         title: 'theme.arise.food',
       },
       {
-        type: AriseThemeType.Grounded,
+        style: AriseThemeStyle.Grounded,
         img: groundedImg,
         title: 'theme.arise.grounded',
       },
       {
-        type: AriseThemeType.Hammer,
+        style: AriseThemeStyle.Hammer,
         img: hammerImg,
         title: 'theme.arise.hammer',
       },
@@ -46,9 +46,9 @@ export const themes = [
   {
     title: 'Modern',
     theme: Theme.MODERN,
-    types: [
+    styles: [
       {
-        type: ModernThemeType.Default,
+        style: ModernThemeStyle.Default,
         img: modernImg,
         title: 'theme.modern.default',
       },

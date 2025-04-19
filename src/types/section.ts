@@ -109,14 +109,15 @@ export interface CurrentEditingFormType {
   blockId?: BlockId;
 }
 
-export enum AriseThemeType {
+// Arise主题风格
+export enum AriseThemeStyle {
   Default = 'default',
   Food = 'food',
   Grounded = 'grounded',
   Hammer = 'hammer',
 }
-
-export enum ModernThemeType {
+// Modern主题风格
+export enum ModernThemeStyle {
   Default = 'default',
 }
 
@@ -127,7 +128,7 @@ export interface ThemeSchemaStruct {
     settings: SectionSettingSchemaStruct[];
   }[];
   presets: {
-    type: AriseThemeType;
+    type: AriseThemeStyle;
     name: string;
     settings: Record<string, SettingDefaultValueType>;
   }[];

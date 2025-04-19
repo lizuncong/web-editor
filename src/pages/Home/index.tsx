@@ -19,9 +19,9 @@ const Home = memo(() => {
       </div>
       <div className={styles.list}>
         {themes.map((themeConfig) => {
-          return themeConfig.types.map((theme) => {
+          return themeConfig.styles.map((theme) => {
             return (
-              <div className={styles.item} key={theme.type}>
+              <div className={styles.item} key={theme.style}>
                 <div className={styles.imgWrapper}>
                   <img className={styles.img} src={theme.img} alt="" />
                 </div>
@@ -36,7 +36,7 @@ const Home = memo(() => {
                         // messageApi.warning(developing);
                         return;
                       }
-                      navigate(`/editor?theme=${themeConfig.theme}&themetype=${theme.type}`);
+                      navigate(`/editor?theme=${themeConfig.theme}&themestyle=${theme.style}`);
                     }}
                   >
                     {t('home.edit')}

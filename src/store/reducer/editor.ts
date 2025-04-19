@@ -6,9 +6,9 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { PreviewTypeEnum, SideBarTypeEnum } from '@/types/editor';
 import { Theme } from '@/types/enum';
 import {
-  AriseThemeType,
+  AriseThemeStyle,
   CurrentEditingFormType,
-  ModernThemeType,
+  ModernThemeStyle,
   SectionConfigDataStruct,
   SectionSchemaStruct,
 } from '@/types/section';
@@ -21,7 +21,7 @@ export interface EditorSliceState {
   sectionConfigData: SectionConfigDataStruct;
   currentEditingForm?: CurrentEditingFormType;
   theme: Theme | undefined;
-  themeType: AriseThemeType | ModernThemeType | undefined;
+  themeStyle: AriseThemeStyle | ModernThemeStyle | undefined;
 }
 
 const initialState: EditorSliceState = {
@@ -31,7 +31,7 @@ const initialState: EditorSliceState = {
   allSectionSchema: {},
   sectionConfigData: { order: [], sections: {} },
   theme: undefined,
-  themeType: undefined,
+  themeStyle: undefined,
 };
 
 export const editorSlice = createAppSlice({
