@@ -2,18 +2,21 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
+import LanguageSelect from '@/components/LanguageSelect';
 import { themes } from '@/constant';
 import { Theme } from '@/types/enum';
 
 import styles from './index.module.less';
-
 const Home = memo(() => {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
   return (
     <div className={styles.home}>
-      <div className={styles.header}>{t('home.title')}</div>
+      <div className={styles.header}>
+        <span className={styles.title}> {t('home.title')}</span>
+        <LanguageSelect />
+      </div>
       <div className={styles.list}>
         {themes.map((theme) => {
           return (
@@ -33,7 +36,7 @@ const Home = memo(() => {
                     navigate(`/editor?theme=${theme.theme}`);
                   }}
                 >
-                  编辑
+                  {t('home.edit')}
                 </span>
               </div>
             </div>

@@ -6,16 +6,20 @@
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+import { LanguageEnum } from '@/types/enum';
+
 import { createAppSlice } from '../createAppSlice';
 
 export interface GlobalSliceState {
   uid: string;
   userName: string;
+  language: LanguageEnum;
 }
 
 const initialState: GlobalSliceState = {
   uid: '',
   userName: '张三',
+  language: LanguageEnum.ZH,
 };
 
 export const globalSlice = createAppSlice({

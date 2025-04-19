@@ -1,7 +1,8 @@
 {
   "home": {
     "title": "我的主题",
-    "developing": "敬请期待！"
+    "developing": "敬请期待！",
+    "edit": "编辑"
   },
   "editor": {
     "header": "落地页低代码编辑器",

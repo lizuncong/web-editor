@@ -1,0 +1,21 @@
+{
+  "home": {
+    "title": "My Themes",
+    "developing": "Coming Soon!",
+    "edit": "Edit"
+  },
+  "editor": {
+    "header": "Landing Page Low-Code Editor",
+    "compsetting": "Component Settings",
+    "notfound": "Section Not Defined",
+    "addSection": "Add Section Component",
+    "selectSection": "Click to Add Section Component",
+    "collectionpicker": "Select Product Category",
+    "imagepicker": "Add Image",
+    "selectvideo": "Select Local Video File",
+    "addBlock": "Add Block Component",
+    "selectBlock": "Click to Add Block Component",
+    "notfoundtheme": "Theme not found, return to homepage to select theme",
+    "backhome": "Back to Homepage"
+  }
+}
