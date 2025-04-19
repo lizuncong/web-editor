@@ -1,4 +1,59 @@
 .home {
-  color: red;
-  font-size: 24px;
+  height: 100vh;
+  padding: 24px;
+  background-color: #eaedf1;
+
+  .header {
+    margin-bottom: 24px;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    width: 202px;
+    height: 250px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .imgWrapper {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    .title {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+    }
+
+    .edit {
+      color: #356dff;
+      font-size: 12px;
+    }
+  }
 }

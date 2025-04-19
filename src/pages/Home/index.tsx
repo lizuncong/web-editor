@@ -1,13 +1,39 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
+
+import { themes } from '@/constant';
 
 import styles from './index.module.less';
+
 const Home = memo(() => {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   return (
     <div className={styles.home}>
-      首页<span>({t('home.title')})</span>
+      <div className={styles.header}>{t('home.title')}</div>
+      <div className={styles.list}>
+        {themes.map((theme) => {
+          return (
+            <div className={styles.item} key={theme.theme}>
+              <div className={styles.imgWrapper}>
+                <img className={styles.img} src={theme.img} alt="" />
+              </div>
+              <div className={styles.title}>
+                <span>{theme.title}</span>
+                <span
+                  className={styles.edit}
+                  onClick={() => {
+                    navigate(`/editor?theme=${theme.theme}`);
+                  }}
+                >
+                  编辑
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 });

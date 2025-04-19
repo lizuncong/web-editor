@@ -1,8 +1,11 @@
-import { lazy, memo } from 'react';
+import { lazy, memo, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useSearchParams } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { changeEditorState } from '@/store/reducer/editor';
 import { SideBarTypeEnum } from '@/types/editor';
+import { Theme } from '@/types/enum';
 
 import ComponentIcon from './assets/component.svg?react';
 import ThemeIcon from './assets/theme.svg?react';
@@ -26,11 +29,34 @@ const sideBarIcons = [
   },
 ];
 const Editor = memo(() => {
+  const { t } = useTranslation();
   const sideBarType = useAppSelector((state) => state.editor.sideBarType);
   const dispatch = useAppDispatch();
-
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const theme = searchParams.get('theme');
+  useEffect(() => {
+    if (theme) {
+      dispatch(changeEditorState({ theme: theme as Theme }));
+    }
+  }, [dispatch, theme]);
   // 监听iframe的消息
   useListenerMsgFromIframe();
+  if (!theme) {
+    return (
+      <div className={styles.notfound}>
+        <span>{t('editor.notfoundtheme')}</span>
+        <span
+          className={styles.back}
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          {t('editor.backhome')}
+        </span>
+      </div>
+    );
+  }
   return (
     <div className={styles.editor}>
       {/* 顶部栏 */}

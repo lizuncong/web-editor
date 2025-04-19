@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "首页"
+    "title": "我的主题"
   },
   "editor": {
     "header": "落地页低代码编辑器",
@@ -12,6 +12,8 @@
     "imagepicker": "添加图片",
     "selectvideo": "选择本地视频文件",
     "addBlock": "添加Block组件",
-    "selectBlock": "点击添加Block组件"
+    "selectBlock": "点击添加Block组件",
+    "notfoundtheme": "主题不存在，返回首页选择主题",
+    "backhome": "返回首页"
   }
 }
