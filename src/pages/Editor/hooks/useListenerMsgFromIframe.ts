@@ -17,6 +17,22 @@ export const useListenerMsgFromIframe = () => {
     updateAllSectionConfigData,
   } = useUpdateConfigData();
   useEffect(() => {
+    // 监听主题配置项改变的信息
+    const offThemeConfigChange = iframeCommunicator.onThemeConfigChange((data) => {
+      dispatch(
+        changeEditorState({
+          themeConfig: data,
+        }),
+      );
+    });
+    // 监听主题schema改变的信息
+    const offThemeSchemaChange = iframeCommunicator.onThemeSchemaChange((data) => {
+      dispatch(
+        changeEditorState({
+          themeSchema: data,
+        }),
+      );
+    });
     // 监听currentEditingForm改变的信息
     const offCurrentEditingFormChange = iframeCommunicator.onCurrentEditingFormChange((data) => {
       dispatch(
@@ -68,6 +84,8 @@ export const useListenerMsgFromIframe = () => {
       offSectionConfigSectionsChange();
       offSectionSchemaLanguage();
       offCurrentEditingFormChange();
+      offThemeSchemaChange();
+      offThemeConfigChange();
     };
   }, [
     dispatch,

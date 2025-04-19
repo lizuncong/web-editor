@@ -11,6 +11,8 @@ import {
   ModernThemeStyle,
   SectionConfigDataStruct,
   SectionSchemaStruct,
+  ThemePresetType,
+  ThemeSchemaStruct,
 } from '@/types/section';
 
 import { createAppSlice } from '../createAppSlice';
@@ -22,6 +24,8 @@ export interface EditorSliceState {
   currentEditingForm?: CurrentEditingFormType;
   theme: Theme | undefined;
   themeStyle: AriseThemeStyle | ModernThemeStyle | undefined;
+  themeConfig: ThemePresetType | undefined;
+  themeSchema: ThemeSchemaStruct | undefined;
 }
 
 const initialState: EditorSliceState = {
@@ -32,6 +36,8 @@ const initialState: EditorSliceState = {
   sectionConfigData: { order: [], sections: {} },
   theme: undefined,
   themeStyle: undefined,
+  themeConfig: undefined,
+  themeSchema: undefined,
 };
 
 export const editorSlice = createAppSlice({

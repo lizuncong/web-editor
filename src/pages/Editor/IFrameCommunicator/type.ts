@@ -6,6 +6,8 @@ export enum CommunicateType {
   sectionConfigData = 'sectionConfigData', // 整个sectionConfigData发生了改变
   currentEditingForm = 'currentEditingForm', // 当前正在编辑的section或者block发生了改变
   language = 'language', // 语言发生了改变
+  themeSchemaChange = 'themeSchemaChange', // theme schema改变
+  themeConfigChange = 'themeConfigChange', // theme config改变
 }
 
 // 仅监听消息的type，监听iframe发送过来的消息

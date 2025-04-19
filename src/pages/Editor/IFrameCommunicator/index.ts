@@ -7,6 +7,8 @@ import {
   SectionId,
   SectionSchemaStruct,
   SectionTypeEnum,
+  ThemePresetType,
+  ThemeSchemaStruct,
 } from '@/types/section';
 import { resolvablePromise } from '@/utils/resolve';
 
@@ -94,7 +96,14 @@ class FrameCommunicator {
       this.offMessage(type, handler);
     };
   }
-
+  // 监听主题改变
+  public onThemeSchemaChange(handler: (themeSchema: ThemeSchemaStruct) => void) {
+    return this.onMessage(CommunicateType.themeSchemaChange, handler);
+  }
+  // 监听主题配置项改变
+  public onThemeConfigChange(handler: (themeConfig: ThemePresetType) => void) {
+    return this.onMessage(CommunicateType.themeConfigChange, handler);
+  }
   // 监听sectionConfigData的order发生的改变
   public onSectionConfigOrderChange(handler: (order: SectionId[]) => void) {
     return this.onMessage(CommunicateType.order, handler);
