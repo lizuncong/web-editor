@@ -8,7 +8,7 @@ import styles from './index.module.less';
 const Preview = memo(() => {
   const preview = useAppSelector((state) => state.editor.previewType);
   const { theme, themeStyle } = useAppSelector((state) => state.editor);
-  const language = useAppSelector((state) => state.editor.language);
+  const language = useAppSelector((state) => state.global.language);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const src = getIframeSrc(theme!);
   useEffect(() => {
