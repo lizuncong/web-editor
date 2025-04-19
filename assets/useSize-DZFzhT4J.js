@@ -1,1 +1,0 @@
-import{R as n}from"./index-DgAqubsy.js";import{ae as t}from"./asyncToGenerator-DHA4TCNP.js";const a=e=>{const r=n.useContext(t);return n.useMemo(()=>e?typeof e=="string"?e??r:typeof e=="function"?e(r):r:r,[e,r])};export{a as u};
