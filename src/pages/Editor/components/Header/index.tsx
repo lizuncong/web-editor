@@ -26,7 +26,7 @@ const Header = memo(() => {
   return (
     <header className={styles.header}>
       <div className={styles.left}>{t('editor.header')}</div>
-      <div className={styles.right}>
+      <div className={styles.middle}>
         {previewTypeIcons.map((typeIcon) => (
           <span
             key={typeIcon.type}
@@ -43,6 +43,7 @@ const Header = memo(() => {
           </span>
         ))}
       </div>
+      <div className={styles.right}></div>
     </header>
   );
 });

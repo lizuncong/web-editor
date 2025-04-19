@@ -11,8 +11,8 @@ const Right = memo(() => {
   const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm);
   const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
   const allSectionSchema = useAppSelector((state) => state.editor.allSectionSchema);
-  const sectionSchema = allSectionSchema[currentEditingForm!.type];
-  const sectionConfig = sectionConfigData.sections[currentEditingForm!.sectionId]!;
+  const sectionSchema = allSectionSchema[currentEditingForm?.type ?? ''];
+  const sectionConfig = sectionConfigData.sections[currentEditingForm?.sectionId ?? ''];
   const { updateSectionConfigSectionBySectionId } = useUpdateConfigData();
   const { t } = useTranslation();
   const onSettingValueChange = useCallback(
@@ -29,7 +29,9 @@ const Right = memo(() => {
     },
     [currentEditingForm, sectionConfig, updateSectionConfigSectionBySectionId],
   );
-
+  if (!currentEditingForm || !sectionConfig) {
+    return <div className={[styles.container, styles.nodata].join(' ')}>在左侧边栏点击选择一个组件进行编辑</div>;
+  }
   return (
     <div className={styles.container}>
       <div className={styles.header}>{t(sectionSchema.name)}</div>

@@ -3,18 +3,18 @@
 .header {
   display: flex;
   height: 60px;
-  padding: 0 16px;
   border-bottom: 1px solid #eee;
 
   .left {
     display: flex;
     align-items: center;
-    width: @material-width;
+    width: calc(@material-width + @sidebar-width);
     padding-right: 10px;
+    padding-left: 16px;
     font-size: 16px;
   }
 
-  .right {
+  .middle {
     display: flex;
     flex: 1;
     align-items: center;
@@ -41,5 +41,10 @@
         content: '';
       }
     }
+  }
+
+  .right {
+    width: @material-width;
+    padding-right: 16px;
   }
 }

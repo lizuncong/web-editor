@@ -27,7 +27,6 @@ const sideBarIcons = [
 ];
 const Editor = memo(() => {
   const sideBarType = useAppSelector((state) => state.editor.sideBarType);
-  const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm);
   const dispatch = useAppDispatch();
 
   // 监听iframe的消息
@@ -64,7 +63,7 @@ const Editor = memo(() => {
         {/* 预览区 */}
         <Preview />
         {/* 组件设置表单 */}
-        {currentEditingForm && <RightDrawer />}
+        <RightDrawer />
       </div>
     </div>
   );
