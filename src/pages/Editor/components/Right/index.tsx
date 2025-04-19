@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useAppSelector } from '@/store/hooks';
 
@@ -7,9 +8,9 @@ import styles from './index.module.less';
 import SectionSettingForm from './SectionSettingForm';
 const Right = memo(() => {
   const currentEditingForm = useAppSelector((state) => state.editor.currentEditingForm)!;
-
+  const { t } = useTranslation();
   if (!currentEditingForm) {
-    return <div className={[styles.container, styles.nodata].join(' ')}>在左侧边栏点击选择一个组件进行编辑</div>;
+    return <div className={[styles.container, styles.nodata].join(' ')}>{t('editor.nosetting')}</div>;
   }
   if (currentEditingForm.sectionId && !currentEditingForm.blockId) {
     return <SectionSettingForm />;

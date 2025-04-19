@@ -16,6 +16,7 @@
     "addBlock": "Add Block Component",
     "selectBlock": "Click to Add Block Component",
     "notfoundtheme": "Theme not found, return to homepage to select theme",
-    "backhome": "Back to Homepage"
+    "backhome": "Back to Homepage",
+    "nosetting": "Click to select a component to edit on the left sidebar"
   }
 }
