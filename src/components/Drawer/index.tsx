@@ -13,6 +13,7 @@ interface DrawerProps {
 }
 const Drawer = memo((props: DrawerProps) => {
   const { position = 'right', open, onClose, title, children } = props;
+  if (!open) return null;
   return createPortal(
     <div className={[styles.container, position === 'left' && styles.left, open && styles.open].join(' ')}>
       <div className={styles.header}>

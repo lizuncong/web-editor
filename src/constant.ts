@@ -13,6 +13,9 @@ export const getThemeOrigin = () => {
 export const getIframeSrc = (theme: Theme) => {
   return isDev() ? 'http://localhost:5174/' : `https://lizuncong.github.io/${theme}/`;
 };
+export const getEditorSrc = () => {
+  return isDev() ? 'http://localhost:5173/' : `https://lizuncong.github.io/web-editor/`;
+};
 export const isDev = () => {
   return !location.host.includes('lizuncong.github.io');
 };
