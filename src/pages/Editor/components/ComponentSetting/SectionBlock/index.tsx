@@ -36,7 +36,8 @@ const SectionBlock = memo((props: SectionBlockProps) => {
     transition,
   };
   const blockType = currentBlockConfigData.type;
-
+  const imageObj = currentBlockConfigData.settings?.image?.value as { url: string };
+  const imgUrl = imageObj?.url;
   const currentBlockSchema = allSectionSchema[sectionType].blocks?.find((block) => block.type === blockType);
   if (!currentBlockSchema) return;
   const Icon = iconMap[currentBlockSchema.icon] || defaultIcon;
@@ -50,9 +51,14 @@ const SectionBlock = memo((props: SectionBlockProps) => {
         className={[styles.section, isSelected && styles.selected].join(' ')}
       >
         <span className={styles.dragwrap}>
-          <span className={[styles.icon, styles.sicon].join(' ')}>
-            <Icon />
-          </span>
+          {imgUrl ? (
+            <img src={imgUrl} alt="img" className={[styles.icon, styles.sicon].join(' ')} />
+          ) : (
+            <span className={[styles.icon, styles.sicon].join(' ')}>
+              <Icon />
+            </span>
+          )}
+
           <span {...listeners} className={[styles.icon, styles.dragicon].join(' ')}>
             <DragIcon />
           </span>
