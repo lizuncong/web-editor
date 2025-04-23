@@ -112,6 +112,9 @@ const SectionCom = memo((props: SectionProps) => {
         <span
           className={styles.opicon}
           onClick={() => {
+            if (sectionId === currentEditingForm?.sectionId) {
+              updateCurrentEditingForm(undefined);
+            }
             updateAllSectionConfigData({
               order: allSectionConfigData.order.filter((sid) => sid !== sectionId),
               sections: {

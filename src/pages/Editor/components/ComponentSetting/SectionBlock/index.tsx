@@ -83,6 +83,9 @@ const SectionBlock = memo((props: SectionBlockProps) => {
         <span
           className={styles.opicon}
           onClick={() => {
+            if (blockId === currentEditingForm?.blockId) {
+              updateCurrentEditingForm(undefined);
+            }
             updateBlockConfigData(sectionId, blockId, undefined);
           }}
         >
