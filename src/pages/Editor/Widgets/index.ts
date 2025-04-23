@@ -14,9 +14,7 @@ const ExternalVideoUrlWidget = lazy(
 );
 
 const groupHeaderWidget = lazy(() => import(/* webpackChunkName: 'groupheaderwidget' */ './GroupHeader'));
-const collectionPickerWidget = lazy(
-  () => import(/* webpackChunkName: 'collectionPickerWidget' */ './CollectionPicker'),
-);
+
 const imagePickerWidget = lazy(() => import(/* webpackChunkName: 'imagePickerWidget' */ './ImagePicker'));
 
 export const getWidget = (type: WidgetType) => {
@@ -26,7 +24,7 @@ export const getWidget = (type: WidgetType) => {
     [WidgetType.select]: selectWidget,
     [WidgetType.switch]: switchWidget,
     [WidgetType.group_header]: groupHeaderWidget,
-    [WidgetType.collection_picker]: collectionPickerWidget,
+    [WidgetType.collection_picker]: TextWidget,
     [WidgetType.image_picker]: imagePickerWidget,
     [WidgetType.video]: localVideoWidget, // 选择本地视频
     [WidgetType.video_url]: ExternalVideoUrlWidget, // 输入外部视频链接

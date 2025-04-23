@@ -35,8 +35,8 @@ const BlockSettingForm = memo(() => {
     <Form
       title={t(blockSchema.name)}
       info={sectionSchema.block_info ? t(sectionSchema.block_info) : ''}
-      settings={blockSchema.settings ?? []}
-      settingValue={blockConfig.settings}
+      settings={blockSchema?.settings ?? []}
+      settingValue={blockConfig?.settings || {}}
       onSettingValueChange={onSettingValueChange}
     />
   );
