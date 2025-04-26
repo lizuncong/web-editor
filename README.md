@@ -16,7 +16,7 @@
 
 ## 效果
 
-![image](./docs/images/preview.mp4)
+<image src="./docs/images/preview.mp4" height="160" >
 
 ## 架构设计
 
