@@ -16,7 +16,7 @@
 
 ## 效果
 
-<video  autoplay src="./docs/images/preview.mp4" height="160" >
+<video  autoplay src="./docs/images/preview.mp4" height="160" />
 
 ## 架构设计
 
