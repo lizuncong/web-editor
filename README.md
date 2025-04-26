@@ -14,6 +14,10 @@
 
 然后修改src/constant.ts文件，将里面的origin信息改成你自己的即可。
 
+## 效果
+
+![image](./docs/images/preview.mp4)
+
 ## 架构设计
 
 ### 技术栈：React
