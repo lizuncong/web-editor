@@ -16,7 +16,7 @@
 
 ## 效果
 
-<image src="./docs/images/preview.mp4" height="160" >
+<image src="https://lizuncong.github.io/web-editor/preview.mp4" height="160" >
 
 ## 架构设计
 
