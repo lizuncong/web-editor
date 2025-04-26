@@ -16,7 +16,7 @@
 
 ## 效果
 
-<video  autoplay src="./docs/images/preview.mp4" height="160" />
+预览效果可以点这里：[预览视频](./docs/images/preview.mp4)
 
 ## 架构设计
 
