@@ -1,7 +1,9 @@
+import { Button } from 'antd';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import LanguageSelect from '@/components/LanguageSelect';
+import { getIframeSrc } from '@/constant';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { changeEditorState } from '@/store/reducer/editor';
 import { PreviewTypeEnum } from '@/types/editor';
@@ -21,8 +23,12 @@ const previewTypeIcons = [
 ];
 const Header = memo(() => {
   const previewType = useAppSelector((state) => state.editor.previewType);
+  const sectionConfigData = useAppSelector((state) => state.editor.sectionConfigData);
+  const themeConfig = useAppSelector((state) => state.editor.themeConfig);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const { theme, themeStyle } = useAppSelector((state) => state.editor);
+  const language = useAppSelector((state) => state.global.language);
 
   return (
     <header className={styles.header}>
@@ -45,6 +51,22 @@ const Header = memo(() => {
         ))}
       </div>
       <div className={styles.right}>
+        <Button
+          onClick={() => {
+            const configData = {
+              sectionConfigData,
+              themeConfig,
+            };
+            localStorage.setItem('editorConfigData', JSON.stringify(configData));
+            const src = getIframeSrc(theme!);
+            const previewUrl = src + `?ispreview=1&themestyle=${themeStyle}&language=${language}`;
+            window.open(previewUrl, '_blank');
+          }}
+          className={styles.previewBtn}
+          type="primary"
+        >
+          预览
+        </Button>
         <LanguageSelect />
       </div>
     </header>
