@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
+import Github from '@/components/Github';
 import LanguageSelect from '@/components/LanguageSelect';
 import { themes } from '@/constant';
 import { Theme } from '@/types/enum';
@@ -16,6 +17,7 @@ const Home = memo(() => {
       <div className={styles.header}>
         <span className={styles.title}> {t('home.title')}</span>
         <LanguageSelect />
+        <Github />
       </div>
       <div className={styles.list}>
         {themes.map((themeConfig) => {

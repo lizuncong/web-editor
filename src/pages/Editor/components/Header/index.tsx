@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Github from '@/components/Github';
 import LanguageSelect from '@/components/LanguageSelect';
 import { getIframeSrc } from '@/constant';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -68,6 +69,7 @@ const Header = memo(() => {
           预览
         </Button>
         <LanguageSelect />
+        <Github />
       </div>
     </header>
   );
