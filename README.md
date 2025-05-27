@@ -18,6 +18,8 @@
 
 预览效果可以点这里：[预览视频](./docs/images/preview.mp4)
 
+或者点击这里体验：[落地页低代码编辑器在线预览效果](https://lizuncong.github.io/web-editor/)
+
 ## 架构设计
 
 ### 技术栈：React
